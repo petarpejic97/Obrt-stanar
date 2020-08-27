@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Obrt Stanar</string>
+    <!--    Prva stranica-->
+    <string name="obrtstanar">OBRT ZA ODRŽAVANJE I UPRAVLJANJE ZGRADAMA</string>
+    <!--    login-->
+    <string name="email">Unesite email</string>
+    <string name="password">Unesite zaporku</string>
+    <string name="registration">Još nemate profil? Registrirajte se.</string>
+    <string name="login">Prijavi se</string>
+    <!--    registracija-->
+    <string name="name">Unesite ime</string>
+    <string name="lastname">Unesite prezime</string>
+    <string name="confpass">Ponovno unesite zaporku</string>
+    <string name="phoneNumber">Unesite broj mobitela/ telefona</string>
+    <string name="doregistration">Registriraj se</string>
+</resources>
