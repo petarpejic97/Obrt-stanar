@@ -3,14 +3,14 @@ package com.example.obrtstanar
 import android.app.ProgressDialog
 import android.content.Context
 
-class ProgressDialog(context : Context, title:String, subtitle:String) {
-    var context : Context = context
-    var title : String = title
-    var subtitle : String = subtitle
+class ProgressDialog(var context: Context, var title: String, private var subtitle: String) {
+    val progressDialog = ProgressDialog(context)
     init{
-        var progressDialog = ProgressDialog(context)
         progressDialog.setTitle(title)
         progressDialog.setMessage(subtitle)
         progressDialog.show()
+    }
+    fun progresDismis(){
+        progressDialog.dismiss();
     }
 }

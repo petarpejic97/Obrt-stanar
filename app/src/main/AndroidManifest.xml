@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registration"></activity>
+        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".MainMenu" />
+        <activity android:name=".Contact" />
+        <activity android:name=".Registration" />
         <activity android:name=".LoginUser" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -4,6 +4,7 @@ package com.example.obrtstanar
 
 import android.content.Intent
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -141,24 +142,23 @@ class Registration : AppCompatActivity() {
     }
 
     private fun registration() {
-        ProgressDialog(this,"Registracija","Molimo pričekajte...")
+        val progress = ProgressDialog(this,"Registracija","Molimo pričekajte...")
+
         auth.createUserWithEmailAndPassword(edemail.text.toString(), edpassword.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     auth.currentUser?.sendEmailVerification()
                         ?.addOnCompleteListener(OnCompleteListener<Void?> { task ->
                             if (task.isSuccessful) {
-                                Toast.makeText(
-                                    this,"Registration finished! Please check your email for verification !",Toast.LENGTH_LONG
-                                ).show()
+                                Toast.makeText(this,"Molimo Vas potvrdite svoj email!",Toast.LENGTH_LONG).show()
                                 saveInDatabase()
                                 goOnLoginActivity()
                             }
                         })
 
                 } else {
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    progress.progresDismis()
+                    Toast.makeText(baseContext, "Authentication failed.",Toast.LENGTH_SHORT).show()
                 }
             }
     }

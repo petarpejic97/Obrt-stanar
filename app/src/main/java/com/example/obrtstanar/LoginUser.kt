@@ -1,5 +1,7 @@
 package com.example.obrtstanar
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -60,8 +62,7 @@ class LoginUser : AppCompatActivity() {
         edittext.error = "Polje ne smije biti prazno."
     }
     private fun doLogin() {
-        Log.w("AAA",edEmail.text.toString())
-        Log.w("AAA",edPassword.text.toString())
+        val progress = ProgressDialog(this,"Prijava","Molimo pričekate...")
         auth.signInWithEmailAndPassword(edEmail.text.toString(), edPassword.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -74,16 +75,17 @@ class LoginUser : AppCompatActivity() {
 //                        editor.putString("flag", "true").apply();
 //                        editor.putString("loggedEmail", email).apply();
                         //findUserInDatabase();
-                        Toast.makeText(baseContext, "Prebaci na drugi activty failed.",
-                            Toast.LENGTH_SHORT).show()
+                        goOnActivity(MainMenu::class.java)
                     }
                     else{
+                        progress.progresDismis()
                         Toast.makeText(baseContext, "Podvrdite svoju email adresu.",
                             Toast.LENGTH_SHORT).show()
                     }
 
                 } else {
-                    Toast.makeText(baseContext, "Login failed.",
+                    progress.progresDismis()
+                    Toast.makeText(baseContext, "Prijava neuspješna.",
                         Toast.LENGTH_SHORT).show()
                 }
             }
@@ -91,12 +93,12 @@ class LoginUser : AppCompatActivity() {
 
     private fun ListenerOnRegistration() {
         tvRegistration.setOnClickListener {
-            goOnRegistrationActivity();
+            goOnActivity(Registration::class.java);
         }
     }
 
-    private fun goOnRegistrationActivity() {
-        val intent = Intent(this, Registration::class.java)
+    private fun goOnActivity(classs: Class<*>) {
+        val intent = Intent(this, classs)
         startActivity(intent)
         finish()
     }

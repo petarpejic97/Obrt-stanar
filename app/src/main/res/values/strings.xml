@@ -13,4 +13,21 @@
     <string name="confpass">Ponovno unesite zaporku</string>
     <string name="phoneNumber">Unesite broj mobitela/ telefona</string>
     <string name="doregistration">Registriraj se</string>
+    <!--    glavni izbornik-->
+    <string name="mainmenu">Izbornik</string>
+    <string name="aboutus">O nama</string>
+    <string name="Notifications">Obavjesti</string>
+    <string name="reportfailure">Prijava kvara</string>
+    <string name="financial">Financijsko stanje</string>
+    <string name="buildings">Zgrade pod upravom</string>
+    <string name="importantinfo">Korisne informacije</string>
+    <string name="gallery">Galerija slika</string>
+    <string name="contact">Kontakt</string>
+    <!--    o nama-->
+    <string name="textAboutUs">Obrt za održavanje i upravljanje zgradama "Stanar", vl. Ivana Popović, započeo je sa radom 1. lipnja 2009.
+        Sada je pod upravom Obrta "Stanar" 98 stambenih ulaza u 5 gradova - Vinkovcima, Vukovaru, Iloku, Staroj  Gradišci, Slavonskom Brodu i Zatonu.
+        \nOsim redovitog održavanja stambenih zgrada,  prije 6 godina započeli smo sa energetskom obnovom uz sufinanciranje Grada Vinkovaca.
+        Putem FZOEU, sufinancirali smo energetske certifikate i ugradnju termostatskih ventila i razdjelnika.
+        Trenutno sudjelujemo na natječaju FZOEU za energetsku obnovu višestambenih zgrada.\nStalnim edukacijama nastojimo stečena znanja primjenjivati u svakodnevnim poslovima,
+        te se nadamo da prepoznajete naša nastojanja da život u višestambenim zgradama bude ugodan.</string>
 </resources>
