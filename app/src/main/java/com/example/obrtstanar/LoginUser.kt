@@ -3,6 +3,7 @@ package com.example.obrtstanar
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -67,14 +68,9 @@ class LoginUser : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     if(auth.getCurrentUser()?.isEmailVerified()!!) {
-//                        SharedPreferences sharedPreferences = getActivity ().getSharedPreferences(
-//                            "login",
-//                            Context.MODE_PRIVATE
-//                        );
-//                        SharedPreferences.Editor editor = sharedPreferences . edit ();
-//                        editor.putString("flag", "true").apply();
-//                        editor.putString("loggedEmail", email).apply();
-                        //findUserInDatabase();
+                        val preferenceManager = PreferenceManager()
+                        preferenceManager.saveLoggedEmail(edEmail.text.toString())
+                        preferenceManager.setLoginStatus("true")
                         goOnActivity(MainMenu::class.java)
                     }
                     else{

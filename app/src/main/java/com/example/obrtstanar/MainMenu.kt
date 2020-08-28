@@ -35,26 +35,20 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         tvAboutUs.setOnClickListener(this)
         tvContact.setOnClickListener(this)
     }
-    fun contactListener(){
-        tvContact.setOnClickListener {
-            goOnActivity(Contact::class.java)
-        }
-    }
-
-    private fun goOnActivity(classs: Class<*>) {
-        val intent = Intent(this, classs)
-        startActivity(intent)
-        finish()
-    }
-
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.tvAbousUs -> {
-                goOnActivity(AboutUs::class.java)
+                goOnActivity(FragmentContainer::class.java,"O nama")
             }
             R.id.tvContact -> {
-                goOnActivity(Contact::class.java)
+                goOnActivity(FragmentContainer::class.java,"Kontakt")
             }
         }
+    }
+    private fun goOnActivity(classs: Class<*>,fragmentTitle : String) {
+        val intent = Intent(this, classs)
+        intent.putExtra("fragmentId", fragmentTitle)
+        startActivity(intent)
+        finish()
     }
 }

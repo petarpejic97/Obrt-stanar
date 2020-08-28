@@ -10,18 +10,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startNewActivity();
+        setDelay()
     }
-
-    private fun startNewActivity() {
+    fun setDelay(){
         val handler = Handler()
-        handler.postDelayed(Runnable { openLogin() }, 2000)
+        handler.postDelayed(Runnable { checkIsUserLogged() }, 2000)
     }
-
-    private fun openLogin() {
-        val intent = Intent(this, LoginUser::class.java)
+    fun checkIsUserLogged(){
+        val preferenceManager = PreferenceManager()
+        if(preferenceManager.GetLoginStatus() == "true"){
+            startNewActivity(MainMenu::class.java)
+        }
+        else{
+            startNewActivity(LoginUser::class.java)
+        }
+    }
+    private fun startNewActivity(classs: Class<*>) {
+        val intent = Intent(this, classs)
         startActivity(intent)
         finish()
     }
-
 }

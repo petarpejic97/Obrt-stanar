@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/aboutUs"
+        android:title="@string/aboutus" />
+    <item
+        android:id="@+id/notification"
+        android:title="@string/Notifications" />
+    <item
+        android:id="@+id/reportFailure"
+        android:title="@string/reportfailure" />
+    <item
+        android:id="@+id/financial"
+        android:title="@string/financial" />
+    <item
+        android:id="@+id/buildings"
+        android:title="@string/buildings" />
+    <item
+        android:id="@+id/importantInfo"
+        android:title="@string/importantinfo" />
+    <item
+        android:id="@+id/gallery"
+        android:title="@string/gallery" />
+    <item
+        android:id="@+id/contact"
+        android:title="@string/contact" />
+    <item
+        android:id="@+id/settings"
+        android:title="Postavke" />
+    <item
+        android:id="@+id/logOut"
+        android:title="Odjava" />
+</menu>
