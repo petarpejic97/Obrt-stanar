@@ -7,10 +7,16 @@
     android:background="@color/colorAccent">
     <TextView
         android:padding="25dp"
-        android:id="@+id/drawheader"
+        android:id="@+id/drawerHeaderName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        android:textColor="#FFFFFF"
-        android:text="DRAW HEADER"/>
+        android:textColor="#FFFFFF"/>
+    <TextView
+        android:padding="25dp"
+        android:id="@+id/drawerHeaderEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:textColor="#FFFFFF"/>
 </RelativeLayout>

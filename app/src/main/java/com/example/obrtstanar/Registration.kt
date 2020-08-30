@@ -4,12 +4,13 @@ package com.example.obrtstanar
 
 import android.content.Intent
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.obrtstanar.Klase.ProgressDialog
+import com.example.obrtstanar.Klase.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -142,7 +143,11 @@ class Registration : AppCompatActivity() {
     }
 
     private fun registration() {
-        val progress = ProgressDialog(this,"Registracija","Molimo pričekajte...")
+        val progress = ProgressDialog(
+            this,
+            "Registracija",
+            "Molimo pričekajte..."
+        )
 
         auth.createUserWithEmailAndPassword(edemail.text.toString(), edpassword.text.toString())
             .addOnCompleteListener(this) { task ->
@@ -163,7 +168,12 @@ class Registration : AppCompatActivity() {
             }
     }
     private fun saveInDatabase(){
-        val user = User(edname.text.toString(),edlastname.text.toString(),edphonenumber.text.toString(),edemail.text.toString())
+        val user = User(
+            edname.text.toString(),
+            edlastname.text.toString(),
+            edphonenumber.text.toString(),
+            edemail.text.toString()
+        )
 
         val database = FirebaseDatabase.getInstance()
         val key = database.getReference("users").push().key

@@ -1,4 +1,4 @@
-package com.example.obrtstanar
+package com.example.obrtstanar.Klase
 
 import android.app.ProgressDialog
 import android.content.Context

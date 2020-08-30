@@ -11,17 +11,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/aboutus"
-                android:padding="25dp"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="casual"
-                android:textSize="25sp"
-                />
 
             <ImageView
                 android:id="@+id/imgStanar"
@@ -38,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textAboutUs"
                 android:padding="10dp"
+                android:textSize="15sp"
                 android:layout_below="@id/imgStanar"
                 />
         </RelativeLayout>

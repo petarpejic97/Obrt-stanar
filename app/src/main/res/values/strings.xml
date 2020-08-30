@@ -35,6 +35,12 @@
     <string name="settings">Postavke</string>
     <string name="open">open</string>
     <string name="close">close</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--    kontakt -->
+    <string name="obrtstanarvlasnik">Obrt za idržavanje i upravljanje zgradama Stanar vl. Ivana Popović</string>
+    <string name="radnovrijeme">Radno vrijeme: 8:00 – 16:00</string>
+    <string name="telmob">Telefon/Mobitel: 091 / 544 02 65  ;  099 / 23 99 777</string>
+    <string name="emailaddress">Email: obrt.stanar@gmail.com</string>
+    <string name="address">Adresa: Hrvatskih kraljeva 28, VINKOVCI</string>
+    <!-- apykey -->
+    <string name="goolemaps">AIzaSyAX-nTJq_gmzpGLmeTrkv_rSL34HcenlI4</string>
 </resources>

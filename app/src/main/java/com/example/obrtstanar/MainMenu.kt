@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.obrtstanar.Klase.PreferenceManager
 
 class MainMenu : AppCompatActivity(), View.OnClickListener {
 
@@ -18,7 +19,7 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
     lateinit var tvImportantInfo : TextView;
     lateinit var tvGallery : TextView;
     lateinit var tvContact : TextView;
-
+    lateinit var preferenceManager: PreferenceManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
@@ -30,25 +31,41 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
     fun initializeVariable(){
         tvAboutUs = findViewById(R.id.tvAbousUs)
         tvContact = findViewById(R.id.tvContact)
+        imgLogOut = findViewById(R.id.imgLogOut)
+        preferenceManager = PreferenceManager()
     }
     fun setListeners(){
         tvAboutUs.setOnClickListener(this)
         tvContact.setOnClickListener(this)
+        imgLogOut.setOnClickListener(this)
     }
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.tvAbousUs -> {
-                goOnActivity(FragmentContainer::class.java,"O nama")
+                goOnFragment(FragmentContainer::class.java,"O nama")
             }
             R.id.tvContact -> {
-                goOnActivity(FragmentContainer::class.java,"Kontakt")
+                goOnFragment(FragmentContainer::class.java,"Kontakt")
+            }
+            R.id.imgLogOut ->{
+                goOnActivity(LoginUser::class.java)
             }
         }
     }
-    private fun goOnActivity(classs: Class<*>,fragmentTitle : String) {
+    private fun goOnFragment(classs: Class<*>,fragmentTitle : String) {
         val intent = Intent(this, classs)
         intent.putExtra("fragmentId", fragmentTitle)
         startActivity(intent)
         finish()
+    }
+    private fun goOnActivity(classs: Class<*>){
+        setPreferences()
+        val intent = Intent(this, classs)
+        startActivity(intent)
+        finish()
+    }
+    private fun setPreferences(){
+        preferenceManager.saveLoggedEmail("Niste prijavljeni.")
+        preferenceManager.setLoginStatus("false")
     }
 }

@@ -1,14 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragmenti.Contact">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imgContactTop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CSADSADASD" />
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lapovci3"
+        android:adjustViewBounds="true"
+        />
+    <LinearLayout
+        android:id="@+id/linearContact"
+        android:layout_below="@id/imgContactTop"
+        android:layout_above="@+id/map"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:weightSum="5"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvobrtstanarvlasnik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/obrtstanarvlasnik"/>
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvRadnoVrijeme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="@string/radnovrijeme"/>
+
+        <TextView
+            android:id="@+id/tvTelMob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/telmob" />
+
+        <TextView
+            android:id="@+id/tvEmailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/emailaddress" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="@string/address"/>
+    </LinearLayout>
+
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/map"
+        tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+</RelativeLayout>

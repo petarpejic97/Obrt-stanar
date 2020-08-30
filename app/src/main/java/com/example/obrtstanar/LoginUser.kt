@@ -1,16 +1,14 @@
 package com.example.obrtstanar
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.obrtstanar.Klase.PreferenceManager
+import com.example.obrtstanar.Klase.ProgressDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -20,6 +18,7 @@ class LoginUser : AppCompatActivity() {
     lateinit var btnLogin : Button
     lateinit var edEmail : EditText
     lateinit var  edPassword : EditText
+    lateinit var preferenceManager : PreferenceManager
 
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +36,7 @@ class LoginUser : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         edEmail = findViewById(R.id.edEmail)
         edPassword = findViewById(R.id.edPassword)
+        preferenceManager = PreferenceManager()
     }
     private fun ListenerLogin() {
         btnLogin.setOnClickListener {
@@ -63,14 +63,20 @@ class LoginUser : AppCompatActivity() {
         edittext.error = "Polje ne smije biti prazno."
     }
     private fun doLogin() {
-        val progress = ProgressDialog(this,"Prijava","Molimo pričekate...")
+        val progress = ProgressDialog(
+            this,
+            "Prijava",
+            "Molimo pričekate..."
+        )
         auth.signInWithEmailAndPassword(edEmail.text.toString(), edPassword.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     if(auth.getCurrentUser()?.isEmailVerified()!!) {
-                        val preferenceManager = PreferenceManager()
+
                         preferenceManager.saveLoggedEmail(edEmail.text.toString())
+
                         preferenceManager.setLoginStatus("true")
+
                         goOnActivity(MainMenu::class.java)
                     }
                     else{
@@ -98,6 +104,4 @@ class LoginUser : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-
 }
