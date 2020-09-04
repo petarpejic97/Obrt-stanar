@@ -8,6 +8,8 @@ class ProgressDialog(var context: Context, var title: String, private var subtit
     init{
         progressDialog.setTitle(title)
         progressDialog.setMessage(subtitle)
+    }
+    fun showDialog(){
         progressDialog.show()
     }
     fun progresDismis(){

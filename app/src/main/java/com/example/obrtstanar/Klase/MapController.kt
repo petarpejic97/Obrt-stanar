@@ -7,18 +7,19 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapController(private val map: GoogleMap) {
+    private var markerOptions : MarkerOptions = MarkerOptions()
 
-    private lateinit var location : LatLng
 
-    fun setMapView(loc2 : LatLng){
-        setLocationMarker(loc2)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 14.0f))
+    fun setMapView(loc : LatLng,zoom : Float){
+        markerOptions.position(loc)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(markerOptions.position, zoom))
         map.uiSettings.isZoomControlsEnabled = true
     }
-    private fun setLocationMarker(loc : LatLng){
-        location = loc
-    }
     fun setMarkerTitle(title : String){
-        map.addMarker(MarkerOptions().position(location).title(title))
+        map.addMarker(MarkerOptions().position(markerOptions.position).title(title))
+    }
+    fun setMarker(location : LatLng){
+        markerOptions.position(location)
+        map.addMarker(markerOptions)
     }
 }

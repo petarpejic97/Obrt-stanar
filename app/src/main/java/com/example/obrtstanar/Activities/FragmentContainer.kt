@@ -1,7 +1,8 @@
-package com.example.obrtstanar
+package com.example.obrtstanar.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -12,9 +13,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.obrtstanar.Fragmenti.AboutUs
-import com.example.obrtstanar.Fragmenti.Contact
+import com.example.obrtstanar.Fragmenti.*
 import com.example.obrtstanar.Klase.PreferenceManager
+import com.example.obrtstanar.R
 import com.google.android.material.navigation.NavigationView
 
 class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -62,7 +63,10 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         navigationView.setNavigationItemSelectedListener(this)
-        actionBarDrawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close)
+        actionBarDrawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,
+            R.string.open,
+            R.string.close
+        )
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.isDrawerIndicatorEnabled = true
         actionBarDrawerToggle.syncState()
@@ -95,13 +99,40 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
             }
             "Prijava kvara" -> {
+                toolbatTitle.text="Prijava kvara"
+                if(firstFragment){
+                    openFirstFragment(ReportFailure())
+                    firstFragment=false
 
+                }
+                else{
+                    replaceFragment(ReportFailure())
+                }
+            }
+            "Prijavljeni kvarovi" -> {
+                toolbatTitle.text="Prijavljeni kvarovi"
+                if(firstFragment){
+                    openFirstFragment(MyReportFailure())
+                    firstFragment=false
+
+                }
+                else{
+                    replaceFragment(MyReportFailure())
+                }
             }
             "Financijsko stanje" -> {
 
             }
             "Zgrade pod upravom"-> {
+                toolbatTitle.text="Zgrade pod upravom"
+                if(firstFragment){
+                    openFirstFragment(OurBuildings())
+                    firstFragment=false
 
+                }
+                else{
+                    replaceFragment(OurBuildings())
+                }
             }
             "Korisne informacije" -> {
 
@@ -120,8 +151,15 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
 
             }
-            "Postavke" -> {
-
+            "Profil" -> {
+                toolbatTitle.text="Profil"
+                if(firstFragment){
+                    openFirstFragment(Profile(this))
+                    firstFragment=false
+                }
+                else{
+                    replaceFragment(Profile(this))
+                }
             }
             "Odjava" -> {
                 goOnActivity(LoginUser::class.java)

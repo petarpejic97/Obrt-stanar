@@ -1,4 +1,4 @@
-package com.example.obrtstanar
+package com.example.obrtstanar.Klase
 
 import android.app.Application
 import android.content.Context

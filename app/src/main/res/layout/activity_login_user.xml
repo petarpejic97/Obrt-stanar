@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="25sp"
     android:background="@color/colorPrimary"
-    tools:context=".LoginUser">
+    tools:context=".Activities.LoginUser">
 
     <EditText
         android:id="@+id/edEmail"
@@ -56,5 +56,15 @@
         android:layout_below="@+id/btnLogin"
         android:fontFamily="sans-serif-thin"
         />
-
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvForgotPassword"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvRegistration"
+        android:fontFamily="sans-serif-thin"
+        />
 </RelativeLayout>

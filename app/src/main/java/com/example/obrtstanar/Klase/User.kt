@@ -1,5 +1,5 @@
 package com.example.obrtstanar.Klase
 
-open class User(
-    var name: String, var lastName: String, var phoneNumber: String, var email: String
+data class User(
+    var name: String, var lastName: String, var phoneNumber: String, var address: String, var email: String
 )

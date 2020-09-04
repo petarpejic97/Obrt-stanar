@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="25dp"
-    tools:context=".Registration">
+    android:padding="20dp"
+    tools:context=".Activities.Registration">
 
     <ImageView
         android:id="@+id/imgBack"
@@ -40,10 +40,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/edEmail"
+        android:layout_above="@+id/edAddress"
         android:hint="@string/phoneNumber"
         android:fontFamily="sans-serif-thin"
         android:inputType="number"
+        android:textColor="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary"
+        />
+    <EditText
+        android:id="@+id/edAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/edEmail"
+        android:hint="@string/regaddress"
+        android:fontFamily="sans-serif-thin"
         android:textColor="@color/colorPrimary"
         android:backgroundTint="@color/colorPrimary"
         />

@@ -1,4 +1,4 @@
-package com.example.obrtstanar
+package com.example.obrtstanar.Activities
 
 //import com.google.firebase.database.FirebaseDatabase
 
@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.obrtstanar.Klase.ProgressDialog
 import com.example.obrtstanar.Klase.User
+import com.example.obrtstanar.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -27,7 +28,9 @@ class Registration : AppCompatActivity() {
     lateinit var edemail : EditText;
     lateinit var edpassword : EditText;
     lateinit var edconfPass : EditText;
+    lateinit var edAddress : EditText;
     lateinit var btnregistration : Button;
+    lateinit var progress : ProgressDialog
 
     var emptyflag : Boolean = true;
     var passrequerments : Boolean = true;
@@ -50,9 +53,11 @@ class Registration : AppCompatActivity() {
         edlastname = findViewById(R.id.edLastname)
         edphonenumber = findViewById(R.id.edPhoneNumber)
         edemail = findViewById(R.id.edEmail)
+        edAddress = findViewById(R.id.edAddress)
         edpassword = findViewById(R.id.edPassword)
         edconfPass = findViewById(R.id.edConfPass)
         btnregistration = findViewById(R.id.btnRegistration)
+        progress = ProgressDialog(this, "Prijava", "Molimo pričekate...")
     }
     private fun backListener() {
         imgBack.setOnClickListener {
@@ -93,6 +98,10 @@ class Registration : AppCompatActivity() {
         }
         if(edphonenumber.text.toString().isEmpty()){
             emptyEditTextHandler(edphonenumber)
+            emptyflag = false
+        }
+        if(edAddress.text.toString().isEmpty()){
+            emptyEditTextHandler(edAddress)
             emptyflag = false
         }
         if(edemail.text.toString().isEmpty()){
@@ -143,11 +152,7 @@ class Registration : AppCompatActivity() {
     }
 
     private fun registration() {
-        val progress = ProgressDialog(
-            this,
-            "Registracija",
-            "Molimo pričekajte..."
-        )
+        progress.showDialog()
 
         auth.createUserWithEmailAndPassword(edemail.text.toString(), edpassword.text.toString())
             .addOnCompleteListener(this) { task ->
@@ -172,6 +177,7 @@ class Registration : AppCompatActivity() {
             edname.text.toString(),
             edlastname.text.toString(),
             edphonenumber.text.toString(),
+            edAddress.text.toString(),
             edemail.text.toString()
         )
 

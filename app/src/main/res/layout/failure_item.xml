@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/imgTypeOfFailure"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:src="@drawable/electricfailure"
+        android:layout_marginRight="10dp"
+        />
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/imgTypeOfFailure"
+        tools:text="IME AUTORA"
+        />
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgTypeOfFailure"
+        android:layout_below="@+id/tvLastname"
+        tools:text="Adresa AUTORA"
+        />
+    <TextView
+        android:id="@+id/tvLastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tvName"
+        tools:text="Prezime AUTORA"
+        />
+    <TextView
+        android:id="@+id/tvRepairTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgTypeOfFailure"
+        android:layout_below="@+id/tvAddress"
+        tools:text="zahtjevano vrijeme"
+        />
+    <TextView
+        android:id="@+id/tvRepairState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgTypeOfFailure"
+        android:layout_below="@+id/tvRepairTime"
+        tools:text="Status kvara"
+        />
+    <TextView
+        android:id="@+id/tvFailureDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgTypeOfFailure"
+        android:layout_below="@+id/tvRepairState"
+        tools:text="Opis kvara"
+        />
+    <TextView
+        android:id="@+id/tvTypeOfFailure"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_below="@+id/imgTypeOfFailure"
+        tools:text="Vodoinstalaterski kvar"
+        />
+</RelativeLayout>

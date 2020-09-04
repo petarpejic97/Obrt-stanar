@@ -4,22 +4,23 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".ObrtStanar"
+        android:name=".Klase.ObrtStanar"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FragmentContainer"></activity>
+        <activity android:name=".Activities.FragmentContainer"></activity>
         <activity android:name=".AboutUs" />
-        <activity android:name=".MainMenu" />
+        <activity android:name=".Activities.MainMenu" />
         <activity android:name=".Contact" />
-        <activity android:name=".Registration" />
-        <activity android:name=".LoginUser" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.Registration" />
+        <activity android:name=".Activities.LoginUser" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
