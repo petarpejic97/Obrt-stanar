@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="notification"
+            type="com.example.obrtstanar.NotificationViewModel">
+        </variable>
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        tools:context=".Fragmenti.ShareNotification">
+
+        <EditText
+            android:id="@+id/edNotificationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="@string/edNotificationHint"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="@={notification.title}"
+            />
+        <EditText
+            android:id="@+id/edNotificationText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="@string/edEnterNotification"
+            android:layout_marginBottom="10dp"
+            android:gravity="start"
+            android:padding="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:layout_below="@id/edNotificationTitle"
+            android:layout_above="@id/btnShareNotification"
+            android:text="@={notification.notificationText}"
+            />
+
+        <Button
+            android:id="@+id/btnShareNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:background="#FFFFFF"
+            android:text="@string/btnShareNotification"
+            />
+    </RelativeLayout>
+</layout>

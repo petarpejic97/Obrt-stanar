@@ -3,20 +3,68 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:background="@color/colorAccent">
+    android:layout_height="wrap_content"
+    android:paddingTop="20dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+    android:background="@color/colorAccent"
+    >
     <TextView
-        android:padding="25dp"
         android:id="@+id/drawerHeaderName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        android:textColor="#FFFFFF"/>
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="7dp"
+        tools:text="PETAR"
+        android:textColor="#FFFFFF"
+        android:layout_marginEnd="7dp"
+        android:layout_marginStart="10dp" />
     <TextView
-        android:padding="25dp"
-        android:id="@+id/drawerHeaderEmail"
+        android:id="@+id/drawerHeaderLastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
+        tools:text="Pejic"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/drawerHeaderName"
         android:textColor="#FFFFFF"/>
+    <TextView
+        android:id="@+id/drawerHeaderEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/drawerHeaderName"
+        tools:ignore="MissingConstraints"
+        android:textColor="#FFFFFF"/>
+    <LinearLayout
+        android:id="@+id/linearLayoutProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true">
+        <ImageView
+            android:id="@+id/drawerHeaderProfileIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/profile"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="5dp" />
+        <TextView
+            android:id="@+id/editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editprofile"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
+
+
 </RelativeLayout>

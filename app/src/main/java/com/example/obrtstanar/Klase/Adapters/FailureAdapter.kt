@@ -1,15 +1,15 @@
-package com.example.obrtstanar.Klase
+package com.example.obrtstanar.Klase.Adapters
 
-import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.obrtstanar.Klase.FirebaseClass.Failure
 import com.example.obrtstanar.R
 import kotlinx.android.synthetic.main.failure_item.view.*
+
 
 class FailureAdapter(failures : MutableList<Failure>): RecyclerView.Adapter<FailureViewHolder>() {
     var failures : MutableList<Failure> = mutableListOf()
@@ -35,6 +35,7 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var tvName : TextView
     var tvLastname : TextView
     var tvAddress : TextView
+    var tvPhoneNumber : TextView
     var tvRepairTime : TextView
     var tvRepairState : TextView
     var tvFailureDescription : TextView
@@ -45,6 +46,7 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         tvName = itemView.findViewById(R.id.tvName)
         tvLastname = itemView.findViewById(R.id.tvLastname)
         tvAddress = itemView.findViewById(R.id.tvAddress)
+        tvPhoneNumber = itemView.findViewById(R.id.tvPhoneNumber)
         tvRepairTime = itemView.findViewById(R.id.tvRepairTime)
         tvRepairState =itemView.findViewById(R.id.tvRepairState)
         tvFailureDescription = itemView.findViewById(R.id.tvFailureDescription)
@@ -62,30 +64,54 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     Log.w("AAA","USPJELO")
                 }
             })*/
-
-        when(failure.typeOfFailure){
-            "Mehanički kvar "->{
-                itemView.imgTypeOfFailure.setImageResource(R.drawable.mehanicalfailure)
-            }
-            "Električni kvar"->{
-                itemView.imgTypeOfFailure.setImageResource(R.drawable.electricfailure)
-            }
-            "Kvar s grijanjem"->{
-                itemView.imgTypeOfFailure.setImageResource(R.drawable.heatinfailure)
-            }
-            "Vodoinstalaterski kvar" ->{
-                itemView.imgTypeOfFailure.setImageResource(R.drawable.plumbingfailure)
-            }
-            "Infrastrukturalni kvar"->{
-                itemView.imgTypeOfFailure.setImageResource(R.drawable.infrastructurefailure)
-            }
-        }
+        itemView.imgTypeOfFailure.setImageResource(setFailureIcon(failure))
         itemView.tvName.text = failure.name
         itemView.tvLastname.text = failure.lastName
         itemView.tvAddress.text = failure.address
+        itemView.tvPhoneNumber.text = failure.phoneNumber
+        itemView.imgBulletState.setImageResource(setStateIcon(failure.repairState))
         itemView.tvRepairTime.text = failure.repairTime
-        itemView.tvRepairState.text = "moram dodatit to u bazu"
+        itemView.tvRepairState.text = failure.repairState
         itemView.tvFailureDescription.text = failure.failureDescription
         itemView.tvTypeOfFailure.text = failure.typeOfFailure
+    }
+    private fun setFailureIcon(failure : Failure) : Int{
+        when(failure.typeOfFailure){
+            "Mehanički kvar"->{
+                return R.drawable.mehanicalfailure
+            }
+            "Električni kvar"->{
+                return R.drawable.electricfailure
+            }
+            "Kvar s grijanjem"->{
+                return R.drawable.heatinfailure
+            }
+            "Vodoinstalaterski kvar" ->{
+                return R.drawable.plumbingfailure
+            }
+            "Infrastrukturni kvar"->{
+                return R.drawable.infrastructurefailure
+            }
+            else -> {
+                return R.drawable.infrastructurefailure
+            }
+
+        }
+    }
+    private fun setStateIcon(state : String) : Int{
+        when(state){
+            "Kvar poslan.Nadstojnik nije vidio." -> {
+                return R.drawable.red
+            }
+            "Viđeno. Tražim majstora." -> {
+                return R.drawable.yellow
+            }
+            "Majstor pozvan" -> {
+                return R.drawable.green
+            }
+            else ->{
+                return R.drawable.red
+            }
+        }
     }
 }

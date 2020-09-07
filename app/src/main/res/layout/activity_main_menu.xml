@@ -66,10 +66,24 @@
         android:layout_marginBottom="3dp"
         />
     <TextView
-        android:id="@+id/tvFinancial"
+        android:id="@+id/tvMyReportFailures"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvReport"
+        android:background="@color/colorPrimary"
+        android:text="@string/myreportfailure"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="20sp"
+        android:layout_marginBottom="3dp"
+        />
+    <TextView
+        android:id="@+id/tvFinancial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMyReportFailures"
         android:background="@color/colorPrimary"
         android:text="@string/financial"
         android:padding="8dp"

@@ -5,19 +5,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import com.example.obrtstanar.Klase.FirebaseHelper
 import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.Klase.ProgressDialog
-import com.example.obrtstanar.Klase.User
+import com.example.obrtstanar.Klase.FirebaseClass.User
 import com.example.obrtstanar.R
 import com.example.obrtstanar.UserViewModel
 import com.example.obrtstanar.databinding.FragmentProfileBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 
@@ -29,12 +30,10 @@ class Profile(mcontext: Context) : Fragment() {
     private lateinit var loggedUser : User
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var progressDialog : ProgressDialog
-    private lateinit var btnResetPassword : Button
-    private lateinit var btnUpdateData : Button
     private lateinit var loggedkey : String
     private lateinit var updatedUser : User
+    lateinit var fragmentTransaction: FragmentTransaction
 
-    private lateinit var query : Query
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -51,18 +50,19 @@ class Profile(mcontext: Context) : Fragment() {
 
         setListeners()
 
+        checkIsAdmin()
+
         return binding.root
     }
 
     private fun initVariables(inflater: LayoutInflater,container: ViewGroup?){
-        btnResetPassword = rootView.findViewById(R.id.btnResetPassword)
-        btnUpdateData = rootView.findViewById(R.id.btnUpdateData)
         viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
         binding = FragmentProfileBinding.inflate(inflater,container,false)
         progressDialog = this.context?.let { ProgressDialog(it,"Učitavanje podataka","Molimo pričekajte...") }!!
         preferenceManager = PreferenceManager()
 
     }
+
     private fun getLoggedUser(){
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("users")
@@ -93,12 +93,20 @@ class Profile(mcontext: Context) : Fragment() {
         }
 
     }
+
     private fun createUser(name: String,lastname:String,phone: String,address: String, email: String){
-        loggedUser = User(name,lastname,phone,address, email)
+        loggedUser = User(
+            name,
+            lastname,
+            phone,
+            address,
+            email
+        )
 
         fillFields()
 
     }
+
     private fun fillFields(){
         binding.apply {
             user = viewModel
@@ -110,19 +118,24 @@ class Profile(mcontext: Context) : Fragment() {
 
         }
     }
+
     private fun setListeners(){
         binding.btnResetPassword.setOnClickListener {
             sendPasswordResetEmail()
         }
         binding.btnUpdateData.setOnClickListener {
             createUpdatedUser()
-            //findUserInDatabase()
+        }
+        binding.btnSetNotification.setOnClickListener {
+            goOnFragment(ShareNotification())
         }
     }
+
     private fun sendPasswordResetEmail(){
         val firebaseHelper = FirebaseHelper()
         this!!.context?.let { firebaseHelper.sendPasswordResetMail(it,preferenceManager.getLoggedEmail().toString()) }
     }
+
     private fun createUpdatedUser(){
         if(binding.user?.name?.value!!.isEmpty() || binding.user?.lastname?.value!!.isEmpty() || binding.user?.phoneNumber?.value!!.isEmpty() ||
             binding.user?.address?.value!!.isEmpty() || binding.user?.email?.value!!.isEmpty()){
@@ -130,8 +143,13 @@ class Profile(mcontext: Context) : Fragment() {
 
         }
         else{
-            updatedUser = User(binding.user?.name?.value.toString(),binding.user?.lastname?.value.toString(),
-                binding.user?.phoneNumber?.value.toString(),binding.user?.address?.value.toString(),binding.user?.email?.value.toString())
+            updatedUser = User(
+                binding.user?.name?.value.toString(),
+                binding.user?.lastname?.value.toString(),
+                binding.user?.phoneNumber?.value.toString(),
+                binding.user?.address?.value.toString(),
+                binding.user?.email?.value.toString()
+            )
             updateUserInDatabase()
             saveInPreferenceManager(binding.user?.name?.value.toString(),binding.user?.lastname?.value.toString(),
                 binding.user?.phoneNumber?.value.toString(),binding.user?.address?.value.toString(),binding.user?.email?.value.toString())
@@ -146,6 +164,7 @@ class Profile(mcontext: Context) : Fragment() {
         preferenceManager.saveAddress(address)
         preferenceManager.saveLoggedEmail(email)
     }
+
     private fun updateUserInDatabase(){
         val database = FirebaseDatabase.getInstance()
         val databaseReference = database.getReference()
@@ -161,7 +180,22 @@ class Profile(mcontext: Context) : Fragment() {
                 }
             })
     }
+
     private fun showToast(message : String){
         Toast.makeText(context,message,Toast.LENGTH_LONG).show()
+    }
+
+    private fun checkIsAdmin(){
+        if(preferenceManager.getLoggedEmail() == "petar.pejic@outlook.com"){
+            binding.btnSeeFailures.visibility = VISIBLE
+            binding.btnSetNotification.visibility = VISIBLE
+        }
+    }
+
+    private  fun goOnFragment(fragment : Fragment){
+        val fragmentManager = this.getFragmentManager()!!
+        fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container_fragment,fragment)
+        fragmentTransaction.commit()
     }
 }

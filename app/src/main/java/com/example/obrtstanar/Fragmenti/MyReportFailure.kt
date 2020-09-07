@@ -6,12 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.obrtstanar.Klase.Failure
-import com.example.obrtstanar.Klase.FailureAdapter
+import com.example.obrtstanar.Klase.FirebaseClass.Failure
+import com.example.obrtstanar.Klase.Adapters.FailureAdapter
 import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.R
 import com.google.firebase.database.*
@@ -21,6 +22,7 @@ class MyReportFailure : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var failureAdapter: FailureAdapter
     private lateinit var preferenceManager : PreferenceManager
+    private lateinit var progressBar : ProgressBar
 
     private lateinit var databaseReference: DatabaseReference
     private var failures : MutableList<Failure> = mutableListOf()
@@ -40,6 +42,7 @@ class MyReportFailure : Fragment() {
         return rootView
     }
     private fun  initializeVariable(){
+        progressBar = rootView.findViewById(R.id.progressBar)
         preferenceManager = PreferenceManager()
         recyclerView = rootView.findViewById(R.id.failureRecyclerView)
         recyclerView.layoutManager = activity?.let { LinearLayoutManager(it) }
@@ -59,26 +62,37 @@ class MyReportFailure : Fragment() {
 
                         for (ds in dataSnapshot.children) {
 
-                            val failure = Failure(
-                                ds.child("name").getValue(String::class.java)!!,
-                                ds.child("lastName").getValue(String::class.java)!!,
-                                ds.child("address").getValue(String::class.java)!!,
-                                ds.child("repairTime").getValue(String::class.java)!!,
-                                ds.child("typeOfFailure").getValue(String::class.java)!!,
-                                ds.child("failureDescription").getValue(String::class.java)!!,
-                                ds.child("failureImageUri").getValue(String::class.java)!!,
-                                ds.child("repairState").getValue(String::class.java)!!,
-                                ds.child("user").getValue(String::class.java)!!
-                            )
+                            val failure =
+                                Failure(
+                                    ds.child("name").getValue(String::class.java)!!,
+                                    ds.child("lastName").getValue(String::class.java)!!,
+                                    ds.child("address").getValue(String::class.java)!!,
+                                    ds.child("phoneNumber").getValue(String::class.java)!!,
+                                    ds.child("repairTime").getValue(String::class.java)!!,
+                                    ds.child("typeOfFailure").getValue(String::class.java)!!,
+                                    ds.child("failureDescription").getValue(String::class.java)!!,
+                                    ds.child("failureImageUri").getValue(String::class.java)!!,
+                                    ds.child("repairState").getValue(String::class.java)!!,
+                                    ds.child("user").getValue(String::class.java)!!
+                                )
                             Log.w("AAA", ds.child("failureDescription").getValue(String::class.java)!!)
                             failures.add(failure)
                         }
-                        failureAdapter = FailureAdapter(failures)
+                        failureAdapter =
+                            FailureAdapter(
+                                failures
+                            )
 
                         recyclerView.adapter = failureAdapter
+
+                        closeProgresBar()
+
                     }
 
                 })
         }
+    }
+    private fun closeProgresBar(){
+        progressBar.visibility = View.GONE
     }
 }

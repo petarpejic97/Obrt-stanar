@@ -77,6 +77,30 @@
             android:text="@string/btnResetPassword"
             />
         <Button
+            android:id="@+id/btnSetNotification"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/btnResetPassword"
+            android:fontFamily="sans-serif-thin"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:textColor="#FFFFFF"
+            android:text="@string/adminSetNotification"
+            android:visibility="invisible"
+            />
+        <Button
+            android:id="@+id/btnSeeFailures"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/btnSetNotification"
+            android:fontFamily="sans-serif-thin"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:textColor="#FFFFFF"
+            android:text="@string/adminSeeFailures"
+            />
+        <Button
             android:id="@+id/btnUpdateData"
             android:layout_width="match_parent"
             android:layout_height="50dp"

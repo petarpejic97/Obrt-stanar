@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.obrtstanar.Klase.ProgressDialog
-import com.example.obrtstanar.Klase.User
+import com.example.obrtstanar.Klase.FirebaseClass.User
 import com.example.obrtstanar.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth

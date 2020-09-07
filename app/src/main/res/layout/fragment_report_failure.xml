@@ -41,12 +41,23 @@
         android:hint="@string/edAddress"
         android:fontFamily="sans-serif-thin"
         />
+    <EditText
+        android:id="@+id/edPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="10dp"
+        android:layout_below="@+id/edAddress"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/phoneNumber"
+        android:fontFamily="sans-serif-thin"
+        />
     <TextView
         android:id="@+id/tvUkljuciKorisnikovePodatke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
-        android:layout_below="@+id/edAddress"
+        android:layout_below="@+id/edPhoneNumber"
         android:text="@string/turnOnUserSetting"
         android:textColor="#FFFFFF"
         />
@@ -97,12 +108,13 @@
     <EditText
         android:id="@+id/edFailureDescription"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:background="#FFFFFF"
         android:padding="10dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/spinnerwrapper"
         android:hint="@string/failureDescription"
+        android:gravity="start"
         android:fontFamily="sans-serif-thin"
         />
     <Button
@@ -116,6 +128,14 @@
         android:background="#FFFFFF"
         android:drawableLeft="@drawable/photoicon"
         />
+    <TextView
+        android:id="@+id/loadedPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="pasdpasdlaspd.png"
+        android:layout_below="@id/btnLoadPicture"
+        android:textColor="#FFFFFF"
+        />
     <Button
         android:id="@+id/btnSubmitRequest"
         android:layout_width="match_parent"
@@ -126,4 +146,5 @@
         android:fontFamily="sans-serif-thin"
         android:background="#FFFFFF"
         />
+
 </RelativeLayout>

@@ -3,8 +3,10 @@ package com.example.obrtstanar.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,7 @@ import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.R
 import com.google.android.material.navigation.NavigationView
 
+
 class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var drawerLayout : DrawerLayout
@@ -27,8 +30,10 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
     lateinit var navigationView : NavigationView
     lateinit var hView: View
     lateinit var drawerHeaderName : TextView
+    lateinit var drawerHeaderLastname : TextView
     lateinit var drawerHeaderEmail : TextView
-
+    lateinit var drawerHeaderProfileIcon : ImageView
+    lateinit var drawerHeaderEditProfile : TextView
     lateinit var fragmentManager: FragmentManager
     lateinit var fragmentTransaction: FragmentTransaction
     lateinit var preferenceManager : PreferenceManager
@@ -44,19 +49,28 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setNavigationDrawer()
 
         setHeaderInfo()
+        
+        invalidateOptionsMenu();
 
         goOnFragment(intent.getStringExtra("fragmentId")!!)
     }
 
     private fun initializeVariable() {
+
         toolbar = findViewById(R.id.toolbar)
         toolbatTitle = toolbar.findViewById(R.id.toolbar_title)
         drawerLayout = findViewById(R.id.drawer)
         navigationView = findViewById(R.id.navigationView)
+
         hView = navigationView.getHeaderView(0)
         drawerHeaderName = hView.findViewById(R.id.drawerHeaderName)
+        drawerHeaderLastname = hView.findViewById(R.id.drawerHeaderLastname)
         drawerHeaderEmail = hView.findViewById(R.id.drawerHeaderEmail)
+        drawerHeaderProfileIcon = hView.findViewById(R.id.drawerHeaderProfileIcon)
+        drawerHeaderEditProfile = hView.findViewById(R.id.editProfile)
+
         preferenceManager = PreferenceManager()
+
     }
 
     private fun setNavigationDrawer(){
@@ -74,6 +88,19 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     private fun setHeaderInfo(){
         drawerHeaderEmail.text = preferenceManager.getLoggedEmail()
+        drawerHeaderName.text = preferenceManager.getLoggedName()
+        drawerHeaderLastname.text = preferenceManager.getLoggedLastname()
+        setHeaderListener()
+    }
+    private fun setHeaderListener(){
+        drawerHeaderEditProfile.setOnClickListener {
+            goOnFragment("Profil")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        drawerHeaderProfileIcon.setOnClickListener {
+            goOnFragment("Profil")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -84,6 +111,7 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     fun goOnFragment(fragmentTitle : String){
         when (fragmentTitle) {
+
             "O nama" -> {
                 toolbatTitle.text="O nama"
                 if(firstFragment){
@@ -96,6 +124,15 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
             }
             "Obavjesti" -> {
+                toolbatTitle.text="Obavjesti"
+                if(firstFragment){
+                    replaceFragment(Notifications())
+                    firstFragment=false
+
+                }
+                else{
+                    replaceFragment(Notifications())
+                }
 
             }
             "Prijava kvara" -> {
@@ -182,12 +219,14 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         fragmentTransaction.replace(R.id.container_fragment,fragment)
         fragmentTransaction.commit()
     }
+
     private fun goOnActivity(classs: Class<*>) {
         setPreferences()
         val intent = Intent(this, classs)
         startActivity(intent)
         finish()
     }
+
     private fun setPreferences(){
         preferenceManager.saveLoggedEmail("Niste prijavljeni.")
         preferenceManager.setLoginStatus("false")

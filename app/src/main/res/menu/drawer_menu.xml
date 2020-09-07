@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title ="@string/userAccount">
+    <item
+        android:title ="@string/userAccount">
         <menu>
-            <item
-                android:id="@+id/account"
-                android:title="@string/account" />
+
             <item
                 android:id="@+id/reportFailure"
                 android:title="@string/reportfailure" />
@@ -15,8 +14,17 @@
                 android:id="@+id/financial"
                 android:title="@string/financial" />
             <item
+                android:id="@+id/adminSetNotification"
+                android:title="@string/adminSetNotification"
+                android:visible="false"/>
+            <item
+                android:id="@+id/adminSeeAllReports"
+                android:title="@string/adminSeeFailures"
+                android:visible="false"/>
+            <item
                 android:id="@+id/logOut"
                 android:title="@string/logout" />
+
         </menu>
     </item>
     <item android:title ="@string/app_name">

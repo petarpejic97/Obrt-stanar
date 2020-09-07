@@ -1,22 +1,17 @@
 package com.example.obrtstanar.Fragmenti
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.obrtstanar.Klase.Failure
+import com.example.obrtstanar.Klase.FirebaseClass.Failure
 import com.example.obrtstanar.Klase.ObrtStanar
 import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.Klase.ProgressDialog
@@ -33,6 +28,7 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
     lateinit var edName : EditText
     lateinit var edLastname : EditText
     lateinit var edAddress : EditText
+    lateinit var edPhoneNumber : EditText
     lateinit var swUserInfo : Switch
     lateinit var edDescription : EditText
     lateinit var spinnerRapeirTime : Spinner
@@ -41,8 +37,9 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
     lateinit var btnLoadPicture : Button
     lateinit var repairTime: String
     lateinit var typeOfFailure: String
+    lateinit var loadedPicture :TextView
     lateinit var preferenceManager: PreferenceManager
-    lateinit var selectedPhotoUri : Uri
+    var selectedPhotoUri : Uri = Uri.EMPTY
     lateinit var progressDialog: ProgressDialog
     lateinit var fragmentTransaction: FragmentTransaction
 
@@ -68,12 +65,15 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
         edName = rootView.findViewById(R.id.edName)
         edLastname = rootView.findViewById(R.id.edLastname)
         edAddress = rootView.findViewById(R.id.edAddress)
+        edPhoneNumber = rootView.findViewById(R.id.edPhoneNumber)
         edDescription = rootView.findViewById(R.id.edFailureDescription)
         swUserInfo = rootView.findViewById(R.id.swcUserInfo)
         btnLoadPicture = rootView.findViewById(R.id.btnLoadPicture)
         btnSubmitRequest = rootView.findViewById(R.id.btnSubmitRequest)
         spinnerRapeirTime = rootView.findViewById(R.id.failureSpinner)
         spinnerTypeOfFaliure = rootView.findViewById(R.id.typeOfFailureSpinner)
+        loadedPicture = rootView.findViewById(R.id.loadedPicture)
+
         preferenceManager = PreferenceManager()
         progressDialog = this.activity?.let { ProgressDialog(it,"Slanje kvara","Molimo vas pričekajte...") }!!
 
@@ -127,10 +127,16 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
     private fun uploadImageToFirebaseStorage(){
         val filename = UUID.randomUUID().toString()
         val storageReference = FirebaseStorage.getInstance().getReference("/images/$filename")
+
         progressDialog.showDialog()
-        storageReference.putFile(selectedPhotoUri).addOnSuccessListener {
-            storageReference.downloadUrl.addOnSuccessListener {
-                saveFailureInDatabase(it.toString())
+        if(selectedPhotoUri == Uri.EMPTY){
+            saveFailureInDatabase("")
+        }
+        else{
+            storageReference.putFile(selectedPhotoUri).addOnSuccessListener {
+                storageReference.downloadUrl.addOnSuccessListener {
+                    saveFailureInDatabase(it.toString())
+                }
             }
         }
 
@@ -149,17 +155,19 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
 
-    private fun createFailure(uri: String) : Failure{
+    private fun createFailure(uri: String) : Failure {
         return Failure(
             edName.text.toString(),
             edLastname.text.toString(),
             edAddress.text.toString(),
+            edPhoneNumber.text.toString(),
             repairTime,
             typeOfFailure,
             edFailureDescription.text.toString(),
             uri,
             "Kvar poslan",
-            preferenceManager.getLoggedEmail().toString())
+            preferenceManager.getLoggedEmail().toString()
+        )
     }
     private fun switchListener(){
         swUserInfo.setOnCheckedChangeListener { compoundButton, b ->
@@ -167,11 +175,13 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
                 edName.text = preferenceManager.getLoggedName()!!.toEditable()
                 edLastname.text = preferenceManager.getLoggedLastname()!!.toEditable()
                 edAddress.text = preferenceManager.getLoggedAddress()!!.toEditable()
+                edPhoneNumber.text = preferenceManager.getLoggedPhoneNumber()!!.toEditable()
             }
             else{
                 edName.text = "".toEditable()
                 edLastname.text = "".toEditable()
                 edAddress.text = "".toEditable()
+                edPhoneNumber.text = "".toEditable()
             }
         }
     }
@@ -187,13 +197,17 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
         super.onActivityResult(requestCode, resultCode, data)
 
         if ( requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
-            Log.w("AAA","AAA")
 
+            loadedPicture.text = editPathToImgName(data.data.toString())
             selectedPhotoUri = data.data!!
 
         }
     }
 
+    private fun editPathToImgName(path : String) : String {
+        val twoFimgname = path.substring(path.lastIndexOf("%")+1);
+        return twoFimgname.substring(2,twoFimgname.length)
+    }
     private fun goOnFragment(fragment: Fragment){
         val fragmentManager = this.getFragmentManager()!!
         fragmentTransaction = fragmentManager.beginTransaction()
