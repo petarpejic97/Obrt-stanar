@@ -94,6 +94,11 @@
         <item>Vodoinstalaterski kvar</item>
         <item>Infrastrukturni kvar</item>
     </string-array>
+    <string-array name="adminState">
+        <item>Kvar poslan. Nadstojnik nije vidio.</item>
+        <item>Viđeno. Tražim majstora.</item>
+        <item>Majstor pozvan</item>
+    </string-array>
 
     <!-- Postavlaknje obavjesti -->
     <string name="edNotificationHint">Unesite naslov obavjesti</string>

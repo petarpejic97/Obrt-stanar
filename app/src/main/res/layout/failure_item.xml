@@ -13,10 +13,19 @@
         android:layout_marginRight="10dp"
         />
     <TextView
+        android:id="@+id/failureId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:textSize="10sp"
+        tools:text="IME AUTORA"
+        android:layout_alignParentRight="true" />
+    <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
+        android:layout_below="@id/failureId"
         android:layout_toRightOf="@+id/imgTypeOfFailure"
         tools:text="IME AUTORA"
         />
@@ -26,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/tvName"
+        android:layout_below="@id/failureId"
         tools:text="Prezime AUTORA"
         />
     <TextView
@@ -70,8 +80,18 @@
         android:layout_toRightOf="@+id/imgBulletState"
         android:layout_below="@+id/line"
         tools:text="Status kvara"
+        android:visibility="visible"
         />
-
+    <Spinner
+        android:id="@+id/spinnerFailureState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgBulletState"
+        android:layout_below="@+id/line"
+        android:visibility="invisible"
+        android:theme="@style/SpinnerTheme"
+        android:spinnerMode="dropdown"
+        />
     <TextView
         android:id="@+id/tvRepairTime"
         android:layout_width="wrap_content"

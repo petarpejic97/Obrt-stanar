@@ -1,4 +1,4 @@
-package com.example.obrtstanar.Klase
+package com.example.obrtstanar.Klase.Controllers
 
 import android.view.LayoutInflater
 import com.google.android.gms.maps.CameraUpdateFactory

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentController
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.obrtstanar.Fragmenti.*
@@ -52,7 +53,8 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         
         invalidateOptionsMenu();
 
-        goOnFragment(intent.getStringExtra("fragmentId")!!)
+        //goOnFragment(intent.getStringExtra("fragmentId")!!)
+        goOnFragment("SeeAllFailures")
     }
 
     private fun initializeVariable() {
@@ -92,6 +94,7 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         drawerHeaderLastname.text = preferenceManager.getLoggedLastname()
         setHeaderListener()
     }
+
     private fun setHeaderListener(){
         drawerHeaderEditProfile.setOnClickListener {
             goOnFragment("Profil")
@@ -115,6 +118,7 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
             "O nama" -> {
                 toolbatTitle.text="O nama"
                 if(firstFragment){
+
                     openFirstFragment(AboutUs())
                     firstFragment=false
 
@@ -158,7 +162,15 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
             }
             "Financijsko stanje" -> {
+                toolbatTitle.text="Financijsko stanje"
+                if(firstFragment){
+                    openFirstFragment(FinantialState())
+                    firstFragment=false
 
+                }
+                else{
+                    replaceFragment(FinantialState())
+                }
             }
             "Zgrade pod upravom"-> {
                 toolbatTitle.text="Zgrade pod upravom"
@@ -198,9 +210,20 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     replaceFragment(Profile(this))
                 }
             }
+            "SeeAllFailures" -> {
+                toolbatTitle.text="Svi kvarovi"
+                if(firstFragment){
+                    openFirstFragment(SeeAllFailures())
+                    firstFragment=false
+                }
+                else{
+                    replaceFragment(SeeAllFailures())
+                }
+            }
             "Odjava" -> {
                 goOnActivity(LoginUser::class.java)
             }
+
         }
 
     }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="showPic"
+            type="com.example.obrtstanar.ShowPictureViewModel">
+        </variable>
+    </data>
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activities.ShowPicture"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back"
+            />
+
+        <TextView
+            android:id="@+id/tvTypeOfFailure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:fontFamily="casual"
+            android:text="@={showPic.typeoffailure}"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ImageView
+            android:id="@+id/failureImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tvTypeOfFailure"
+            />
+
+    </RelativeLayout>
+</layout>

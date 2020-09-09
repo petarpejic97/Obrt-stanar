@@ -3,14 +3,17 @@ package com.example.obrtstanar.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import com.example.obrtstanar.Klase.Controllers.AlertController
 import com.example.obrtstanar.Klase.FirebaseHelper
 import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.Klase.ProgressDialog
+import com.example.obrtstanar.LoginViewModel
 import com.example.obrtstanar.R
+import com.example.obrtstanar.databinding.ActivityLoginUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -20,11 +23,11 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login_user.*
 
 class LoginUser : AppCompatActivity() {
-    lateinit var tvRegistration: TextView;
-    lateinit var  tvForgotPassword : TextView
-    lateinit var btnLogin : Button
-    lateinit var edEmail : EditText
-    lateinit var  edPassword : EditText
+    private lateinit var viewModel : LoginViewModel
+    private lateinit var binding : ActivityLoginUserBinding
+
+    private var alertController : AlertController = AlertController()
+
     lateinit var preferenceManager : PreferenceManager
     lateinit var progress : ProgressDialog
     lateinit var firebaseHelper : FirebaseHelper
@@ -35,6 +38,7 @@ class LoginUser : AppCompatActivity() {
         setContentView(R.layout.activity_login_user)
 
         initializeVariable()
+        setUpUI()
         ListenerOnRegistration()
         ListenerLogin()
         ListenerForgotPass()
@@ -42,43 +46,47 @@ class LoginUser : AppCompatActivity() {
     private fun initializeVariable() {
         // Initialize Firebase Auth
         auth = Firebase.auth
-        tvRegistration = findViewById(R.id.tvRegistration)
-        btnLogin = findViewById(R.id.btnLogin)
-        edEmail = findViewById(R.id.edEmail)
-        edPassword = findViewById(R.id.edPassword)
-        tvForgotPassword = findViewById(R.id.tvForgotPassword)
+
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_login_user)
+
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+
         preferenceManager = PreferenceManager()
         progress = ProgressDialog(this, "Prijava", "Molimo pričekate...")
         firebaseHelper = FirebaseHelper()
     }
+
+    private fun setUpUI(){
+        binding.apply {
+            login = viewModel
+            viewModel.email.value=""
+            viewModel.password.value=""
+        }
+    }
     private fun ListenerLogin() {
-        btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             evaluateEd()
         }
     }
 
     private fun evaluateEd() {
         if(edEmail.text.toString().isEmpty() && edPassword.text.toString().isEmpty()){
-            emptyEditTextHandler(edEmail)
-            emptyEditTextHandler(edPassword)
+            alertController.twoEditTextAlert(edPassword,edEmail,"Polje ne smije biti prazno.")
         }
         else if(edEmail.text.toString().isEmpty()){
-            emptyEditTextHandler(edEmail)
+            alertController.oneEditTextAlert(edEmail,"Polje ne smije biti prazno.")
         }
         else if(edPassword.text.toString().isEmpty()){
-            emptyEditTextHandler(edPassword)
+            alertController.oneEditTextAlert(edPassword,"Polje ne smije biti prazno.")
         }
         else{
             doLogin()
         }
     }
-    fun emptyEditTextHandler(edittext : EditText){
-        edittext.error = "Polje ne smije biti prazno."
-    }
     private fun doLogin() {
         progress.showDialog()
 
-        auth.signInWithEmailAndPassword(edEmail.text.toString(), edPassword.text.toString())
+        auth.signInWithEmailAndPassword(binding.login?.email?.value!!, binding.login?.password?.value!!)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     if(auth.getCurrentUser()?.isEmailVerified()!!) {
@@ -106,7 +114,7 @@ class LoginUser : AppCompatActivity() {
     }
 
     private fun ListenerOnRegistration() {
-        tvRegistration.setOnClickListener {
+        binding.tvRegistration.setOnClickListener {
             goOnActivity(Registration::class.java);
         }
     }
@@ -146,7 +154,7 @@ class LoginUser : AppCompatActivity() {
         preferenceManager.saveLoggedEmail(email)
     }
     private fun ListenerForgotPass(){
-        tvForgotPassword.setOnClickListener {
+        binding.tvForgotPassword.setOnClickListener {
             if(edEmail.text.isEmpty()){
                 Toast.makeText(this,"Molimo upišite svoj email",Toast.LENGTH_LONG).show()
             }

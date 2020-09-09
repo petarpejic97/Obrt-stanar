@@ -88,10 +88,8 @@ class Profile(mcontext: Context) : Fragment() {
                             progressDialog.progresDismis()
                         }
                     }
-
                 })
         }
-
     }
 
     private fun createUser(name: String,lastname:String,phone: String,address: String, email: String){
@@ -128,6 +126,9 @@ class Profile(mcontext: Context) : Fragment() {
         }
         binding.btnSetNotification.setOnClickListener {
             goOnFragment(ShareNotification())
+        }
+        binding.btnSeeFailures.setOnClickListener {
+            goOnFragment(SeeAllFailures())
         }
     }
 

@@ -43,6 +43,7 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         tvBuildings = findViewById(R.id.tvBuildings)
         tvReportFailure = findViewById(R.id.tvReport)
         tvMyReportFailures = findViewById(R.id.tvMyReportFailures)
+        tvFinancial = findViewById(R.id.tvFinancial)
 
         imgLogOut = findViewById(R.id.imgLogOut)
         preferenceManager = PreferenceManager()
@@ -50,10 +51,11 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
     fun setListeners(){
         tvAboutUs.setOnClickListener(this)
         tvNotification.setOnClickListener(this)
-        tvContact.setOnClickListener(this)
-        tvBuildings.setOnClickListener(this)
         tvReportFailure.setOnClickListener(this)
         tvMyReportFailures.setOnClickListener(this)
+        tvFinancial.setOnClickListener(this)
+        tvBuildings.setOnClickListener(this)
+        tvContact.setOnClickListener(this)
         imgLogOut.setOnClickListener(this)
     }
     override fun onClick(v: View?) {
@@ -69,6 +71,9 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
             }
             R.id.tvMyReportFailures -> {
                 goOnFragment(FragmentContainer::class.java,"Prijavljeni kvarovi")
+            }
+            R.id.tvFinancial -> {
+                goOnFragment(FragmentContainer::class.java,"Financijsko stanje")
             }
             R.id.tvContact -> {
                 goOnFragment(FragmentContainer::class.java,"Kontakt")

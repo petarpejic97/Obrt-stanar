@@ -1,5 +1,6 @@
 package com.example.obrtstanar.Fragmenti
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,37 +8,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.obrtstanar.Activities.ShowPicture
 import com.example.obrtstanar.Fragmenti.Listener.FailureListener
 import com.example.obrtstanar.Klase.Adapters.FailureAdapter
 import com.example.obrtstanar.Klase.FirebaseClass.FailureWithId
 import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.R
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-class MyReportFailure : Fragment() {
+class SeeAllFailures : Fragment(){
     private lateinit var rootView : View
     private lateinit var recyclerView: RecyclerView
     private lateinit var failureAdapter: FailureAdapter
     private lateinit var preferenceManager : PreferenceManager
     private lateinit var progressBar : ProgressBar
+
     private lateinit var databaseReference: DatabaseReference
     private var failures : MutableList<FailureWithId> = mutableListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         rootView = inflater.inflate(R.layout.fragment_my_report_failure, container, false)
 
         initializeVariable()
 
-        getMyFailures()
+        getFailures()
 
         return rootView
     }
@@ -49,19 +54,17 @@ class MyReportFailure : Fragment() {
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(DividerItemDecoration(activity,RecyclerView.VERTICAL))
     }
+    fun getFailures(){
 
-    fun getMyFailures(){
         databaseReference = FirebaseDatabase.getInstance().getReference("failures")
 
-        databaseReference.run {
-            orderByChild("user").equalTo(preferenceManager.getLoggedEmail().toString())
-                .addListenerForSingleValueEvent(object : com.google.firebase.database.ValueEventListener{
+        databaseReference
+            .addValueEventListener(object : com.google.firebase.database.ValueEventListener{
                     override fun onCancelled(error: DatabaseError) {
                     }
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                         for (ds in dataSnapshot.children) {
-
                             val failure =
                                 FailureWithId(
                                     ds.key.toString(),
@@ -76,29 +79,39 @@ class MyReportFailure : Fragment() {
                                     ds.child("repairState").getValue(String::class.java)!!,
                                     ds.child("user").getValue(String::class.java)!!
                                 )
-                            Log.w("AAA", ds.child("failureDescription").getValue(String::class.java)!!)
+                            Log.w("state",ds.child("repairState").getValue(String::class.java)!!)
                             failures.add(failure)
                         }
                         val failureListener = object :
                             FailureListener {
-                            override fun onShowDetails(typeoffailure : String, imgUri: String) {
-                                Log.w("AAA",typeoffailure)
+                            override fun onShowDetails(typeoffailure: String,imgUri :String) {
+                                goOnActivityShowPicture(typeoffailure,imgUri)
                             }
 
                         }
-                        failureAdapter =
-                            FailureAdapter(failures,failureListener)
+                        failureAdapter = FailureAdapter(failures,failureListener)
 
                         recyclerView.adapter = failureAdapter
 
                         closeProgresBar()
-
                     }
-
-                })
-        }
+            })
+        Log.w("UDEM","Udem")
     }
     private fun closeProgresBar(){
         progressBar.visibility = View.GONE
+    }
+    private fun goOnActivityShowPicture(type : String, uri : String){
+        val intent = Intent(activity, ShowPicture::class.java)
+        intent.putExtra("typeoffailure", type)
+        if(uri != ""){
+            intent.putExtra("uriImg", uri)
+        }
+        else{
+            intent.putExtra("uriImg", "NoImg")
+        }
+
+        startActivity(intent)
+        //finish()
     }
 }

@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.obrtstanar.Klase.MapController
+import com.example.obrtstanar.Klase.Controllers.MapController
 import com.example.obrtstanar.R
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 
 
 class Contact : Fragment(),OnMapReadyCallback {
@@ -42,7 +40,8 @@ class Contact : Fragment(),OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
-        mapController = MapController(googleMap!!)
+        mapController =
+            MapController(googleMap!!)
         mapController.setMapView(LatLng(45.2890946,18.8070629),14.0F)
         mapController.setMarkerTitle("Obrt Stanar")
     }
