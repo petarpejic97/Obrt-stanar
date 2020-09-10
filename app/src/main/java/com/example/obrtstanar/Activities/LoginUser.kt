@@ -54,6 +54,7 @@ class LoginUser : AppCompatActivity() {
         preferenceManager = PreferenceManager()
         progress = ProgressDialog(this, "Prijava", "Molimo pričekate...")
         firebaseHelper = FirebaseHelper()
+
     }
 
     private fun setUpUI(){

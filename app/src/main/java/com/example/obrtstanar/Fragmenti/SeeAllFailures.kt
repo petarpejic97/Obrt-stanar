@@ -88,6 +88,12 @@ class SeeAllFailures : Fragment(){
                                 goOnActivityShowPicture(typeoffailure,imgUri)
                             }
 
+                            override fun updateWithId(id: String,state : String) {
+                                updateInFirebase(id,state)
+                                failureAdapter.refreshData()
+
+                            }
+
                         }
                         failureAdapter = FailureAdapter(failures,failureListener)
 
@@ -96,7 +102,6 @@ class SeeAllFailures : Fragment(){
                         closeProgresBar()
                     }
             })
-        Log.w("UDEM","Udem")
     }
     private fun closeProgresBar(){
         progressBar.visibility = View.GONE
@@ -113,5 +118,10 @@ class SeeAllFailures : Fragment(){
 
         startActivity(intent)
         //finish()
+    }
+    private fun updateInFirebase(id: String, state : String){
+        val database = FirebaseDatabase.getInstance()
+        val databaseReference = database.getReference()
+        databaseReference.child("failures").child(id).child("repairState").setValue(state)
     }
 }

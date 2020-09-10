@@ -53,8 +53,7 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         
         invalidateOptionsMenu();
 
-        //goOnFragment(intent.getStringExtra("fragmentId")!!)
-        goOnFragment("SeeAllFailures")
+        goOnFragment(intent.getStringExtra("fragmentId")!!)
     }
 
     private fun initializeVariable() {

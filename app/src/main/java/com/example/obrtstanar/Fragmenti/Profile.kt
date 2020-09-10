@@ -190,6 +190,8 @@ class Profile(mcontext: Context) : Fragment() {
         if(preferenceManager.getLoggedEmail() == "petar.pejic@outlook.com"){
             binding.btnSeeFailures.visibility = VISIBLE
             binding.btnSetNotification.visibility = VISIBLE
+            binding.tvSeeAllFailures.visibility = VISIBLE
+            binding.tvSetNotification.visibility = VISIBLE
         }
     }
 

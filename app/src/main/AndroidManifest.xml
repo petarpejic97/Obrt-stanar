@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.UpdateFailure"></activity>
         <activity android:name=".Activities.ShowPicture" />
         <activity android:name=".Activities.FragmentContainer" />
         <activity android:name=".AboutUs" />

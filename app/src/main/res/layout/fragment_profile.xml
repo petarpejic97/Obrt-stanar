@@ -76,30 +76,47 @@
             android:textColor="#FFFFFF"
             android:text="@string/btnResetPassword"
             />
-        <Button
+        <ImageView
             android:id="@+id/btnSetNotification"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/btnResetPassword"
             android:fontFamily="sans-serif-thin"
-            android:background="@color/colorPrimary"
             android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
-            android:text="@string/adminSetNotification"
+            android:src="@drawable/notification"
             android:visibility="invisible"
             />
-        <Button
-            android:id="@+id/btnSeeFailures"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+        <TextView
+            android:id="@+id/tvSetNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/btnSetNotification"
+            android:text="@string/edEnterNotification"
+            android:visibility="invisible"
+            />
+        <ImageView
+            android:id="@+id/btnSeeFailures"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/btnResetPassword"
+            android:layout_alignParentEnd="true"
             android:fontFamily="sans-serif-thin"
-            android:background="@color/colorPrimary"
             android:layout_marginTop="10dp"
             android:visibility="invisible"
             android:textColor="#FFFFFF"
+            android:src="@drawable/problem"
+            android:layout_alignParentRight="true" />
+        <TextView
+            android:id="@+id/tvSeeAllFailures"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSeeFailures"
             android:text="@string/adminSeeFailures"
-            />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"/>
+
         <Button
             android:id="@+id/btnUpdateData"
             android:layout_width="match_parent"
@@ -110,6 +127,7 @@
             android:textColor="#FFFFFF"
             android:text="@string/btnazurirajpodatke"
             />
+
 
     </RelativeLayout>
 

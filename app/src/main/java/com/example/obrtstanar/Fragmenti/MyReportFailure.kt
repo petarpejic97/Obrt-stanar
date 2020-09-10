@@ -85,6 +85,10 @@ class MyReportFailure : Fragment() {
                                 Log.w("AAA",typeoffailure)
                             }
 
+                            override fun updateWithId(id: String, state: String) {
+
+                            }
+
                         }
                         failureAdapter =
                             FailureAdapter(failures,failureListener)

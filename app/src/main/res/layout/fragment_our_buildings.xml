@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragmenti.OurBuildings">
-
-    <Spinner
-        android:id="@+id/cities_spinner"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:padding="10dp"
-        />
+        android:layout_height="match_parent"
+        tools:context=".Fragmenti.OurBuildings">
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cities_spinner"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/map"
-        tools:context=".MapsActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        <Spinner
+            android:id="@+id/cities_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            />
 
-</RelativeLayout>
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cities_spinner"
+            android:layout_alignParentBottom="true"
+            tools:context=".MapsActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    </RelativeLayout>
+</layout>

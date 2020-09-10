@@ -101,7 +101,6 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnI
         itemView.imgBulletState.setImageResource(setStateIcon(failure.repairState))
         itemView.tvRepairTime.text = failure.repairTime
         itemView.tvRepairState.text = failure.repairState
-        Log.w("AAA",itemView.tvRepairState.text.toString())
         itemView.tvFailureDescription.text = failure.failureDescription
         itemView.tvTypeOfFailure.text = failure.typeOfFailure
 
@@ -134,12 +133,15 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnI
     private fun setStateIcon(state : String) : Int{
         when(state){
             "Kvar poslan.Nadstojnik nije vidio." -> {
+                spinnerFailureState.setSelection(0)
                 return R.drawable.red
             }
             "Viđeno. Tražim majstora." -> {
+                spinnerFailureState.setSelection(1)
                 return R.drawable.yellow
             }
             "Majstor pozvan" -> {
+                spinnerFailureState.setSelection(2)
                 return R.drawable.green
             }
             else ->{
@@ -154,13 +156,8 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnI
 
     override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
         if(++check > 1)
-            updateInFirebase(itemView.failureId.text.toString(), parent?.getItemAtPosition(position).toString())
+            //Log.w("ASD","AAA")
+            failureListener.updateWithId(itemView.failureId.text.toString(), parent?.getItemAtPosition(position).toString())
     }
 
-}
-private fun updateInFirebase(id: String, state : String){
-    Log.w("ASD",state)
-    val database = FirebaseDatabase.getInstance()
-    val databaseReference = database.getReference()
-    databaseReference.child("failures").child(id).child("repairState").setValue(state)
 }
