@@ -10,159 +10,166 @@
             type="com.example.obrtstanar.ReportFailureViewModel">
         </variable>
     </data>
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:padding="20dp"
-        tools:context=".Fragmenti.ReportFailure">
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:padding="20dp"
+            tools:context=".Fragmenti.ReportFailure">
 
-        <EditText
-            android:id="@+id/edName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:padding="10dp"
-            android:background="#FFFFFF"
-            android:hint="@string/name"
-            android:fontFamily="sans-serif-thin"
-            android:text="@={reportFailure.name}"
-            />
-        <EditText
-            android:id="@+id/edLastname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@id/edName"
-            android:hint="@string/lastname"
-            android:fontFamily="sans-serif-thin"
-            android:text="@={reportFailure.lastname}"
-
-            />
-        <EditText
-            android:id="@+id/edAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:layout_below="@+id/edLastname"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/edAddress"
-            android:fontFamily="sans-serif-thin"
-            android:text="@={reportFailure.address}"
-
-            />
-        <EditText
-            android:id="@+id/edPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:layout_below="@+id/edAddress"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/phoneNumber"
-            android:fontFamily="sans-serif-thin"
-            android:text="@={reportFailure.phoneNumber}"
-
-            />
-        <TextView
-            android:id="@+id/tvUkljuciKorisnikovePodatke"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-thin"
-            android:layout_below="@+id/edPhoneNumber"
-            android:text="@string/turnOnUserSetting"
-            android:textColor="#FFFFFF"
-            />
-        <Switch
-            android:id="@+id/swcUserInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:switchMinWidth="60dp"
-            android:track="@drawable/switchbutton"
-            android:trackTint="@drawable/switchbutton"
-            android:thumb="@drawable/thumb"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@id/tvUkljuciKorisnikovePodatke"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
-        <LinearLayout
-            android:id="@+id/spinnerwrapper"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_below="@id/swcUserInfo"
-            android:weightSum="2"
-            android:layout_height="wrap_content">
-            <Spinner
-                android:id="@+id/failureSpinner"
+            <EditText
+                android:id="@+id/edName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                android:background="#FFFFFF"
+                android:hint="@string/name"
+                android:fontFamily="sans-serif-thin"
+                android:text="@={reportFailure.name}"
+                />
+            <EditText
+                android:id="@+id/edLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:background="#FFFFFF"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-                android:theme="@style/SpinnerTheme"
-                android:spinnerMode="dropdown"
-                android:layout_marginRight="5dp" />
-            <Spinner
-                android:id="@+id/typeOfFailureSpinner"
+                android:layout_below="@id/edName"
+                android:hint="@string/lastname"
+                android:fontFamily="sans-serif-thin"
+                android:text="@={reportFailure.lastname}"
+
+                />
+            <EditText
+                android:id="@+id/edAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:background="#FFFFFF"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_below="@+id/edLastname"
                 android:layout_marginBottom="10dp"
-                android:theme="@style/SpinnerTheme"
-                android:spinnerMode="dropdown"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
+                android:hint="@string/edAddress"
+                android:fontFamily="sans-serif-thin"
+                android:text="@={reportFailure.address}"
 
-        <EditText
-            android:id="@+id/edFailureDescription"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@+id/spinnerwrapper"
-            android:hint="@string/failureDescription"
-            android:gravity="start"
-            android:fontFamily="sans-serif-thin"
-            android:text="@={reportFailure.description}"
+                />
+            <EditText
+                android:id="@+id/edPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:padding="10dp"
+                android:layout_below="@+id/edAddress"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/phoneNumber"
+                android:fontFamily="sans-serif-thin"
+                android:text="@={reportFailure.phoneNumber}"
 
-            />
-        <Button
-            android:id="@+id/btnLoadPicture"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edFailureDescription"
-            android:text="@string/loadPicture"
-            android:padding="10dp"
-            android:fontFamily="sans-serif-thin"
-            android:background="#FFFFFF"
-            android:drawableLeft="@drawable/photoicon"
-            />
-        <TextView
-            android:id="@+id/loadedPicture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="pasdpasdlaspd.png"
-            android:layout_below="@id/btnLoadPicture"
-            android:textColor="#FFFFFF"
-            />
-        <Button
-            android:id="@+id/btnSubmitRequest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="@string/submitFailure"
-            android:padding="10dp"
-            android:fontFamily="sans-serif-thin"
-            android:background="#FFFFFF"
-            />
+                />
+            <TextView
+                android:id="@+id/tvUkljuciKorisnikovePodatke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-thin"
+                android:layout_below="@+id/edPhoneNumber"
+                android:text="@string/turnOnUserSetting"
+                android:textColor="#FFFFFF"
+                />
+            <Switch
+                android:id="@+id/swcUserInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:switchMinWidth="60dp"
+                android:track="@drawable/switchbutton"
+                android:trackTint="@drawable/switchbutton"
+                android:thumb="@drawable/thumb"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@id/tvUkljuciKorisnikovePodatke"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+            <LinearLayout
+                android:id="@+id/spinnerwrapper"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_below="@id/swcUserInfo"
+                android:weightSum="2"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/failureSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="#FFFFFF"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    android:theme="@style/SpinnerTheme"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginRight="5dp" />
+                <Spinner
+                    android:id="@+id/typeOfFailureSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="#FFFFFF"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:theme="@style/SpinnerTheme"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginStart="5dp" />
+            </LinearLayout>
 
-    </RelativeLayout>
+            <EditText
+                android:id="@+id/edFailureDescription"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#FFFFFF"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/spinnerwrapper"
+                android:hint="@string/failureDescription"
+                android:gravity="start"
+                android:fontFamily="sans-serif-thin"
+                android:text="@={reportFailure.description}"
+
+                />
+            <Button
+                android:id="@+id/btnLoadPicture"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edFailureDescription"
+                android:text="@string/loadPicture"
+                android:padding="10dp"
+                android:fontFamily="sans-serif-thin"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/photoicon"
+                />
+            <TextView
+                android:id="@+id/loadedPicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="pasdpasdlaspd.png"
+                android:layout_below="@id/btnLoadPicture"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="30dp"
+                />
+            <Button
+                android:id="@+id/btnSubmitRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/submitFailure"
+                android:padding="10dp"
+                android:fontFamily="sans-serif-thin"
+                android:background="#FFFFFF"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
+
 </layout>

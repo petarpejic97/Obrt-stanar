@@ -53,7 +53,10 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         
         invalidateOptionsMenu();
 
-        goOnFragment(intent.getStringExtra("fragmentId")!!)
+        if(savedInstanceState == null){
+            goOnFragment(intent.getStringExtra("fragmentId")!!)
+        }
+
     }
 
     private fun initializeVariable() {
@@ -113,111 +116,35 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     fun goOnFragment(fragmentTitle : String){
         when (fragmentTitle) {
-
             "O nama" -> {
-                toolbatTitle.text="O nama"
-                if(firstFragment){
-
-                    openFirstFragment(AboutUs())
-                    firstFragment=false
-
-                }
-                else{
-                    replaceFragment(AboutUs())
-                }
+                fragmentController("O nama",AboutUs())
             }
             "Obavjesti" -> {
-                toolbatTitle.text="Obavjesti"
-                if(firstFragment){
-                    replaceFragment(Notifications())
-                    firstFragment=false
-
-                }
-                else{
-                    replaceFragment(Notifications())
-                }
-
+                fragmentController("Obavjesti",Notifications())
             }
             "Prijava kvara" -> {
-                toolbatTitle.text="Prijava kvara"
-                if(firstFragment){
-                    openFirstFragment(ReportFailure())
-                    firstFragment=false
-
-                }
-                else{
-                    replaceFragment(ReportFailure())
-                }
+                fragmentController("Prijava kvara",ReportFailure())
             }
             "Prijavljeni kvarovi" -> {
-                toolbatTitle.text="Prijavljeni kvarovi"
-                if(firstFragment){
-                    openFirstFragment(MyReportFailure())
-                    firstFragment=false
-
-                }
-                else{
-                    replaceFragment(MyReportFailure())
-                }
+                fragmentController("Prijavljeni kvarovi",MyReportFailure())
             }
             "Financijsko stanje" -> {
-                toolbatTitle.text="Financijsko stanje"
-                if(firstFragment){
-                    openFirstFragment(FinantialState())
-                    firstFragment=false
-
-                }
-                else{
-                    replaceFragment(FinantialState())
-                }
+                fragmentController("Financijsko stanje",FinantialState())
             }
             "Zgrade pod upravom"-> {
-                toolbatTitle.text="Zgrade pod upravom"
-                if(firstFragment){
-                    openFirstFragment(OurBuildings())
-                    firstFragment=false
-
-                }
-                else{
-                    replaceFragment(OurBuildings())
-                }
+                fragmentController("Zgrade pod upravom",OurBuildings())
             }
             "Korisne informacije" -> {
-
-            }
-            "Galerija slika" -> {
-
+                fragmentController("Korisne informacije",importantInformations())
             }
             "Kontakt" -> {
-                toolbatTitle.text="Kontakt"
-                if(firstFragment){
-                    openFirstFragment(Contact())
-                    firstFragment=false
-                }
-                else{
-                    replaceFragment(Contact())
-                }
-
+                fragmentController("Kontakt",Contact())
             }
             "Profil" -> {
-                toolbatTitle.text="Profil"
-                if(firstFragment){
-                    openFirstFragment(Profile(this))
-                    firstFragment=false
-                }
-                else{
-                    replaceFragment(Profile(this))
-                }
+                fragmentController("Profil",Profile(this))
             }
             "SeeAllFailures" -> {
-                toolbatTitle.text="Svi kvarovi"
-                if(firstFragment){
-                    openFirstFragment(SeeAllFailures())
-                    firstFragment=false
-                }
-                else{
-                    replaceFragment(SeeAllFailures())
-                }
+                fragmentController("Svi kvarovi",SeeAllFailures())
             }
             "Odjava" -> {
                 goOnActivity(LoginUser::class.java)
@@ -226,7 +153,16 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
 
     }
-
+    fun fragmentController(title : String,fragment:Fragment){
+        toolbatTitle.text=title
+        if(firstFragment){
+            openFirstFragment(fragment)
+            firstFragment=false
+        }
+        else{
+            replaceFragment(fragment)
+        }
+    }
     fun openFirstFragment(fragment : Fragment){
         fragmentManager = supportFragmentManager
         fragmentTransaction = fragmentManager.beginTransaction()

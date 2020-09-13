@@ -4,6 +4,7 @@ package com.example.obrtstanar.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -62,13 +63,13 @@ class Registration : AppCompatActivity() {
     private fun setUpUI(){
         binding.apply {
             registration = viewModel
-            viewModel.name.value=""
-            viewModel.lastname.value=""
-            viewModel.phoneNumber.value=""
-            viewModel.address.value=""
-            viewModel.email.value=""
-            viewModel.password.value=""
-            viewModel.confPass.value=""
+            binding.registration?.name?.value = viewModel.name.value
+            binding.registration?.lastname?.value = viewModel.lastname.value
+            binding.registration?.phoneNumber?.value = viewModel.phoneNumber.value
+            binding.registration?.address?.value = viewModel.address.value
+            binding.registration?.email?.value = viewModel.email.value
+            binding.registration?.password?.value = viewModel.password.value
+            binding.registration?.confPass?.value = viewModel.confPass.value
         }
     }
     private fun backListener() {
@@ -88,8 +89,8 @@ class Registration : AppCompatActivity() {
     }
     private fun evaluateEditTexts() {
         emptyflag = true
-        var passwordControler = PasswordController(binding.registration?.password?.value!!,
-            binding.registration?.confPass?.value!!)
+        var passwordControler = PasswordController(viewModel.email.value.toString(),
+            viewModel.email.value.toString())
         checkEmptyED()
         if(emptyflag){
             passrequerments = passwordControler.checkPasswordRequirments()
@@ -109,31 +110,31 @@ class Registration : AppCompatActivity() {
         }
     }
     private fun checkEmptyED() {
-        if(binding.registration?.name?.value!!.isEmpty()) {
+        if(viewModel.name.value==null) {
             alertController.oneEditTextAlert(edName,"Polje ne smije biti prazno.")
             emptyflag = false
         }
-        if(binding.registration?.lastname?.value!!.isEmpty()){
+        if(viewModel.lastname.value==null){
             alertController.oneEditTextAlert(edLastname,"Polje ne smije biti prazno.")
             emptyflag = false
         }
-        if(binding.registration?.phoneNumber?.value!!.isEmpty()){
+        if(viewModel.phoneNumber.value==null){
             alertController.oneEditTextAlert(edPhoneNumber,"Polje ne smije biti prazno.")
             emptyflag = false
         }
-        if(binding.registration?.address?.value!!.isEmpty()){
+        if(viewModel.address.value==null){
             alertController.oneEditTextAlert(edAddress,"Polje ne smije biti prazno.")
             emptyflag = false
         }
-        if(binding.registration?.email?.value!!.isEmpty()){
+        if(viewModel.email.value==null){
             alertController.oneEditTextAlert(edEmail,"Polje ne smije biti prazno.")
             emptyflag = false
         }
-        if(binding.registration?.password?.value!!.isEmpty()){
+        if(viewModel.password.value==null){
             alertController.oneEditTextAlert(edPassword,"Polje ne smije biti prazno.")
             emptyflag = false
         }
-        if(binding.registration?.confPass?.value!!.isEmpty()){
+        if(viewModel.confPass.value==null){
             alertController.oneEditTextAlert(edConfPass,"Polje ne smije biti prazno.")
             emptyflag = false
         }

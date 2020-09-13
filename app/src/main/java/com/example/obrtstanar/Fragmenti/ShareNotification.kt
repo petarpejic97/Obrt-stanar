@@ -1,6 +1,11 @@
 package com.example.obrtstanar.Fragmenti
 
 import android.annotation.SuppressLint
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,9 +15,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.getChannelId
+import androidx.core.app.NotificationManagerCompat
+import androidx.fragment.app.FragmentContainer
 import androidx.lifecycle.ViewModelProviders
+import com.android.volley.toolbox.Volley
+import com.example.obrtstanar.Activities.MainMenu
+import com.example.obrtstanar.Klase.CHANNEL_LIKES
+import com.example.obrtstanar.Klase.Controllers.NotificationController
 import com.example.obrtstanar.Klase.FirebaseClass.Notification
+import com.example.obrtstanar.Klase.ObrtStanar
 import com.example.obrtstanar.Klase.ProgressDialog
+import com.example.obrtstanar.Klase.getChannelId
 import com.example.obrtstanar.NotificationViewModel
 import com.example.obrtstanar.R
 import com.example.obrtstanar.UserViewModel
@@ -56,23 +72,24 @@ class ShareNotification : Fragment() {
     private fun setUpUI(){
         binding.apply {
             notification = viewModel
-            viewModel.title.value=""
-            viewModel.notificationText.value=""
+            binding.notification?.title?.value = viewModel.title.value
+            binding.notification?.notificationText?.value = viewModel.notificationText.value
         }
     }
     private fun setListeners(){
         binding.btnShareNotification.setOnClickListener {
+            Log.w("AAA","22222")
             checkIsEmpty()
         }
     }
     private fun checkIsEmpty(){
-        if(binding.notification?.title?.value!!.isEmpty() || binding.notification?.notificationText?.value!!.isEmpty()){
+        if(viewModel.title.value == null|| viewModel.notificationText.value == null){
             Toast.makeText(context,"Molimo Vas popunite sva polja.",Toast.LENGTH_LONG).show()
         }
         else{
             progressDialog = this.context?.let { ProgressDialog(it,"Postavljanje obavjesti","Molimo pričekajte...") }!!
             progressDialog.showDialog()
-            saveNotificationInDatabase(createNotification(binding.notification?.title?.value!!.toString(),binding.notification?.notificationText?.value!!.toString(),getCurrentDate()))
+            saveNotificationInDatabase(Notification(binding.notification?.title?.value!!.toString(),binding.notification?.notificationText?.value!!.toString(),getCurrentDate()))
         }
     }
     private fun saveNotificationInDatabase(notification : Notification){
@@ -80,6 +97,7 @@ class ShareNotification : Fragment() {
         val key = database.getReference("notifications").push().key
         val myRef = key?.let { database.getReference().child("notifications").child(it).setValue(notification) }
         myRef?.addOnSuccessListener {
+
             progressDialog.progresDismis()
         }
     }
@@ -88,9 +106,5 @@ class ShareNotification : Fragment() {
     private fun getCurrentDate() : String {
         val sdf = SimpleDateFormat("dd.M.yyyy hh:mm:ss")
         return sdf.format(Date())
-    }
-
-    private fun createNotification(title : String, notifiText : String,date : String) : Notification{
-        return Notification(title,notifiText,date)
     }
 }

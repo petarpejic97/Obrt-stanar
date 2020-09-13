@@ -3,6 +3,7 @@ package com.example.obrtstanar.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -60,8 +61,8 @@ class LoginUser : AppCompatActivity() {
     private fun setUpUI(){
         binding.apply {
             login = viewModel
-            viewModel.email.value=""
-            viewModel.password.value=""
+            binding.login?.email?.value = viewModel.email.value
+            binding.login?.password?.value = viewModel.password.value
         }
     }
     private fun ListenerLogin() {
@@ -71,13 +72,13 @@ class LoginUser : AppCompatActivity() {
     }
 
     private fun evaluateEd() {
-        if(edEmail.text.toString().isEmpty() && edPassword.text.toString().isEmpty()){
+        if(binding.login?.email?.value?.isEmpty()==null && binding.login?.password?.value?.isEmpty()==null){
             alertController.twoEditTextAlert(edPassword,edEmail,"Polje ne smije biti prazno.")
         }
-        else if(edEmail.text.toString().isEmpty()){
+        else if(binding.login?.email?.value?.isEmpty()==null){
             alertController.oneEditTextAlert(edEmail,"Polje ne smije biti prazno.")
         }
-        else if(edPassword.text.toString().isEmpty()){
+        else if(binding.login?.password?.value?.isEmpty()==null){
             alertController.oneEditTextAlert(edPassword,"Polje ne smije biti prazno.")
         }
         else{
@@ -156,7 +157,7 @@ class LoginUser : AppCompatActivity() {
     }
     private fun ListenerForgotPass(){
         binding.tvForgotPassword.setOnClickListener {
-            if(edEmail.text.isEmpty()){
+            if(binding.login?.email?.value?.isEmpty()==null){
                 Toast.makeText(this,"Molimo upišite svoj email",Toast.LENGTH_LONG).show()
             }
             else{

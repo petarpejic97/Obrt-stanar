@@ -93,11 +93,6 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
     private fun setUpUI(){
         binding.apply {
             reportFailure = viewModel
-            viewModel.name.value = ""
-            viewModel.lastname.value = ""
-            viewModel.address.value = ""
-            viewModel.phoneNumber.value = ""
-            viewModel.description.value = ""
         }
     }
     override fun onNothingSelected(p0: AdapterView<*>?) {

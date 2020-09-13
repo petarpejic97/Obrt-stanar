@@ -42,7 +42,7 @@ class Contact : Fragment(),OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap?) {
         mapController =
             MapController(googleMap!!)
-        mapController.setMapView(LatLng(45.2890946,18.8070629),14.0F)
+        mapController.setMapView(LatLng(45.2890946,18.8070697),14.0F)
         mapController.setMarkerTitle("Obrt Stanar")
     }
 }

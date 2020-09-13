@@ -38,6 +38,7 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         binding.tvMyReportFailures.setOnClickListener(this)
         binding.tvFinancial.setOnClickListener(this)
         binding.tvBuildings.setOnClickListener(this)
+        binding.tvImportantInfo.setOnClickListener(this)
         binding.tvContact.setOnClickListener(this)
         binding.imgLogOut.setOnClickListener(this)
     }
@@ -63,6 +64,9 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
             }
             R.id.tvBuildings -> {
                 goOnFragment(FragmentContainer::class.java,"Zgrade pod upravom")
+            }
+            R.id.tvImportantInfo -> {
+                goOnFragment(FragmentContainer::class.java,"Korisne informacije")
             }
             R.id.imgLogOut ->{
                 goOnActivity(LoginUser::class.java)

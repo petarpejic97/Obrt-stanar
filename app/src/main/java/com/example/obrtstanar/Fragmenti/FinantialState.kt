@@ -30,7 +30,7 @@ class FinantialState : Fragment() {
     private fun setUpView(){
         webView = rootView.findViewById(R.id.wvFinancijalState)
         webView.settings.javaScriptEnabled = true
-        webView.loadUrl("http://www.obrt-stanar.hr/index.php/prijava-korisnika");
+        webView.loadUrl("http://www.obrt-stanar.hr/prijava_p.php");
         webView.webViewClient = WebViewController()
     }
 }

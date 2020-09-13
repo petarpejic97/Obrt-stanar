@@ -52,7 +52,7 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="myreportfailure">Prijavljeni kvarovi</string>
-    <string name="editprofile">Uredite profil</string>
+    <string name="editprofile">Pogledaj profil</string>
 
     <!--    kontakt -->
     <string name="obrtstanarvlasnik">Obrt za idržavanje i upravljanje zgradama Stanar vl. Ivana Popović</string>
@@ -106,4 +106,13 @@
     <string name="btnShareNotification">Objavi obavjest</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Korisne informacije -->
+    <string name="tvimportant1">• Za odluku je potrebno 51%  vlasničke kvadrature (npr. zgrada ima 100 stambenih kvadrata, 2 stama od 26m2 imaju večinu)</string>
+    <string name="tvimportant2">• Pričuvu možete plaćati u OTP banci bez naknade te putem QR coda na uplatnici</string>
+    <string name="tvimportant3">• Pričuvu možete plaćati i unaprijed ( kvartalno, godišnje i sl.)</string>
+    <string name="tvimportant4">• Web servis od 0–24</string>
+    <string name="tvimportant5">• Instagram i facebook</string>
+    <string name="tvimportant6">• Pričuvu je dužan plaćati vlasnik po Zakonu o vlasništvu i drugim stvarnim pravima ako se nije ugovorom reguliralo sa najmoprimcem</string>
+    <string name="tvimportant7">• Neplaćanje pričuve rezultirat će opomenom te ukoliko se opomena zanemari slijedi ovrha sa troškovima odvjetnika i javnog bilježnika</string>
 </resources>

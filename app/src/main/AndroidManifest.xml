@@ -15,10 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.ShowPicture" />
-        <activity android:name=".Activities.FragmentContainer" />
-        <activity android:name=".AboutUs" />
+        <activity android:name=".Activities.FragmentContainer"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".Activities.MainMenu" />
-        <activity android:name=".Contact" />
         <activity android:name=".Activities.Registration" />
         <activity android:name=".Activities.LoginUser" />
         <activity android:name=".Activities.MainActivity">

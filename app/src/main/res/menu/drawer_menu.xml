@@ -43,9 +43,6 @@
                 android:id="@+id/importantInfo"
                 android:title="@string/importantinfo" />
             <item
-                android:id="@+id/gallery"
-                android:title="@string/gallery" />
-            <item
                 android:id="@+id/contact"
                 android:title="@string/contact" />
         </menu>
