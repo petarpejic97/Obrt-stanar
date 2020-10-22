@@ -76,7 +76,6 @@ class MyReportFailure : Fragment() {
                                     ds.child("repairState").getValue(String::class.java)!!,
                                     ds.child("user").getValue(String::class.java)!!
                                 )
-                            Log.w("AAA", ds.child("failureDescription").getValue(String::class.java)!!)
                             failures.add(failure)
                         }
                         val failureListener = object :
@@ -86,6 +85,10 @@ class MyReportFailure : Fragment() {
                             }
 
                             override fun updateWithId(id: String, state: String) {
+
+                            }
+
+                            override fun deleteImage(uri: String, id: String) {
 
                             }
 

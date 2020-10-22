@@ -20,6 +20,15 @@
         android:textSize="10sp"
         tools:text="IME AUTORA"
         android:layout_alignParentRight="true" />
+    <ImageView
+        android:id="@+id/imgRemove"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/failureId"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/remove"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true" />
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
@@ -35,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/tvName"
+        android:layout_toLeftOf="@+id/linearLayoutFinished"
         android:layout_below="@id/failureId"
         tools:text="Prezime AUTORA"
         />
@@ -43,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imgTypeOfFailure"
+        android:layout_toLeftOf="@+id/linearLayoutFinished"
         android:layout_below="@+id/tvLastname"
         tools:text="Adresa AUTORA"
         />
@@ -52,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imgTypeOfFailure"
         android:layout_below="@+id/tvAddress"
+        android:layout_toLeftOf="@+id/linearLayoutFinished"
         tools:text="BROJ AUTORA"
         />
     <View
@@ -81,6 +93,7 @@
         android:layout_below="@+id/line"
         tools:text="Status kvara"
         android:visibility="visible"
+        android:layout_toLeftOf="@+id/linearLayoutFinished"
         />
     <Spinner
         android:id="@+id/spinnerFailureState"
@@ -103,12 +116,39 @@
 
     <TextView
         android:id="@+id/tvFailureDescription"
+        android:layout_width="60dp"
+        android:layout_height="22dp"
+        android:layout_below="@+id/tvRepairTime"
+        android:layout_marginTop="-3dp"
+        android:layout_toRightOf="@+id/imgTypeOfFailure"
+
+        tools:text="Opis kvara" />
+    <LinearLayout
+        android:id="@+id/linearLayoutFinished"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imgTypeOfFailure"
-        android:layout_below="@+id/tvRepairTime"
-        tools:text="Opis kvara"
-        />
+        android:layout_below="@+id/failureId"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvIsFinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-3dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/isfinished"
+            tools:text="Je li kvar\npopravljen?"
+             />
+        <ImageView
+            android:id="@+id/imgFinished"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/finished"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/tvTypeOfFailure"
         android:layout_width="100dp"

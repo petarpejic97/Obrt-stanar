@@ -1,35 +1,55 @@
 package com.example.obrtstanar.Activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
+import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.TextView
+import android.widget.ViewFlipper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
+import com.denzcoskun.imageslider.models.SlideModel
+import com.example.obrtstanar.Fragmenti.Listener.FailureListener
+import com.example.obrtstanar.Klase.Adapters.NotificationAdapter
+import com.example.obrtstanar.Klase.FirebaseClass.FailureWithId
+import com.example.obrtstanar.Klase.FirebaseClass.Notification
 import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.R
 import com.example.obrtstanar.databinding.ActivityMainMenuBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
 
 class MainMenu : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding : ActivityMainMenuBinding
-    lateinit var imgLogOut : ImageView;
+    private lateinit var flipper : ViewFlipper
+    private lateinit var imageSlider : ImageSlider
+    private lateinit var databaseReference: DatabaseReference
 
     lateinit var preferenceManager: PreferenceManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         initializeVariable()
+        setSlider()
         setListeners()
     }
 
     fun initializeVariable(){
-
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main_menu)
 
         preferenceManager = PreferenceManager()
+
+        imageSlider = findViewById(R.id.image_slider)
     }
     fun setListeners(){
         binding.tvAbousUs.setOnClickListener(this)
@@ -41,6 +61,8 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         binding.tvImportantInfo.setOnClickListener(this)
         binding.tvContact.setOnClickListener(this)
         binding.imgLogOut.setOnClickListener(this)
+        binding.imgFacebook.setOnClickListener(this)
+        binding.imgInstagram.setOnClickListener(this)
     }
     override fun onClick(v: View?) {
         when(v?.id){
@@ -71,13 +93,49 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
             R.id.imgLogOut ->{
                 goOnActivity(LoginUser::class.java)
             }
+            R.id.imgFacebook ->{
+                openWeb("https://www.facebook.com/Obrt-Stanar-1138156759628736/")
+            }
+            R.id.imgInstagram ->{
+                openWeb("https://www.instagram.com/stanar_upravljanje/?igshid=1s50nkngocyfv")
+            }
         }
     }
     private fun goOnFragment(classs: Class<*>,fragmentTitle : String) {
         val intent = Intent(this, classs)
         intent.putExtra("fragmentId", fragmentTitle)
         startActivity(intent)
-        finish()
+        //finish()
+    }
+    private fun setSlider(){
+        val imageSlider = findViewById<ImageSlider>(R.id.image_slider) // init imageSlider
+
+        val imageList = ArrayList<SlideModel>()
+        val webList = ArrayList<String>()
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("sponsors")
+
+        databaseReference
+            .addValueEventListener(object : com.google.firebase.database.ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                }
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                    for (ds in dataSnapshot.children) {
+                        //imageList.add(SlideModel("https://bit.ly/37Rn50u", "Baby Owl"))
+                        val slidemodel  = SlideModel(ds.child("imageUrl").value.toString(), ds.child("title").value.toString(),
+                            ScaleTypes.FIT)
+                        webList.add(ds.child("web").value.toString())
+                        imageList.add(slidemodel)
+                    }
+                    imageSlider.setImageList(imageList)
+                    imageSlider.setItemClickListener(object : ItemClickListener {
+                        override fun onItemSelected(position: Int) {
+                            openWeb(webList[position])
+                        }
+                    })
+                }
+            })
     }
     private fun goOnActivity(classs: Class<*>){
         setPreferences()
@@ -87,6 +145,10 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
     }
     private fun setPreferences(){
         preferenceManager.saveLoggedEmail("Niste prijavljeni.")
-        preferenceManager.setLoginStatus("false")
+        preferenceManager.saveLoginStatus("false")
+    }
+    private fun openWeb(website : String){
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(website))
+        startActivity(browserIntent)
     }
 }

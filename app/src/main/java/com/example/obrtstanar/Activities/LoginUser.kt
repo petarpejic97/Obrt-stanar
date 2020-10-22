@@ -95,7 +95,7 @@ class LoginUser : AppCompatActivity() {
 
                         preferenceManager.saveLoggedEmail(edEmail.text.toString())
 
-                        preferenceManager.setLoginStatus("true")
+                        preferenceManager.saveLoginStatus("true")
 
                         saveUserInfoInPreferences()
 
@@ -141,19 +141,21 @@ class LoginUser : AppCompatActivity() {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         for (ds in dataSnapshot.children) {
                             saveInPreferenceManager(ds.key.toString(),ds.child("name").getValue(String::class.java)!!,ds.child("lastName").getValue(String::class.java)!!
-                                    ,ds.child("phoneNumber").getValue(String::class.java)!!,ds.child("address").getValue(String::class.java)!!,ds.child("email").getValue(String::class.java)!!)
+                                    ,ds.child("phoneNumber").getValue(String::class.java)!!,ds.child("address").getValue(String::class.java)!!
+                                    ,ds.child("email").getValue(String::class.java)!!, ds.child("type").getValue(String::class.java)!!)
                         }
                     }
                 })
         }
     }
-    private fun saveInPreferenceManager(key:String, name:String, lastName : String, phoneNumber : String, address : String, email : String){
+    private fun saveInPreferenceManager(key:String, name:String, lastName : String, phoneNumber : String, address : String, email : String,type : String){
         preferenceManager.saveLoggedPrimaryKey(key)
         preferenceManager.saveLoggedName(name)
         preferenceManager.saveLoggedLastname(lastName)
         preferenceManager.savePhoneNumber(phoneNumber)
         preferenceManager.saveAddress(address)
         preferenceManager.saveLoggedEmail(email)
+        preferenceManager.saveUserType(type)
     }
     private fun ListenerForgotPass(){
         binding.tvForgotPassword.setOnClickListener {

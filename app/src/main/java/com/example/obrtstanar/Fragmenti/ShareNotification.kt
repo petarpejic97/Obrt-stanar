@@ -23,12 +23,10 @@ import androidx.fragment.app.FragmentContainer
 import androidx.lifecycle.ViewModelProviders
 import com.android.volley.toolbox.Volley
 import com.example.obrtstanar.Activities.MainMenu
-import com.example.obrtstanar.Klase.CHANNEL_LIKES
 import com.example.obrtstanar.Klase.Controllers.NotificationController
 import com.example.obrtstanar.Klase.FirebaseClass.Notification
 import com.example.obrtstanar.Klase.ObrtStanar
 import com.example.obrtstanar.Klase.ProgressDialog
-import com.example.obrtstanar.Klase.getChannelId
 import com.example.obrtstanar.NotificationViewModel
 import com.example.obrtstanar.R
 import com.example.obrtstanar.UserViewModel

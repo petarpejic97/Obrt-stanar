@@ -148,15 +148,18 @@
                 android:fontFamily="sans-serif-thin"
                 android:background="#FFFFFF"
                 android:drawableLeft="@drawable/photoicon"
+                android:layout_marginBottom="60dp"
                 />
-            <TextView
+            <ImageView
                 android:id="@+id/loadedPicture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 tools:text="pasdpasdlaspd.png"
-                android:layout_below="@id/btnLoadPicture"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="30dp"
+                android:layout_toRightOf="@id/btnLoadPicture"
+                android:src="@drawable/no"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/edFailureDescription"
                 />
             <Button
                 android:id="@+id/btnSubmitRequest"

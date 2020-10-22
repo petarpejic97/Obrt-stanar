@@ -41,7 +41,7 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
 
     lateinit var repairTime: String
     lateinit var typeOfFailure: String
-    lateinit var loadedPicture :TextView
+    lateinit var loadedPicture :ImageView
     lateinit var preferenceManager: PreferenceManager
     var selectedPhotoUri : Uri = Uri.EMPTY
 
@@ -215,7 +215,7 @@ class ReportFailure : Fragment(), AdapterView.OnItemSelectedListener {
         if ( requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
 
             //loadedPicture.text = editPathToImgName(data.data.toString())
-            binding.loadedPicture.text = editPathToImgName(data.data.toString())
+            binding.loadedPicture.setImageResource(R.drawable.yes)
             selectedPhotoUri = data.data!!
 
         }

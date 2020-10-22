@@ -31,6 +31,7 @@ class Profile(mcontext: Context) : Fragment() {
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var progressDialog : ProgressDialog
     private lateinit var loggedkey : String
+    private lateinit var type : String
     private lateinit var updatedUser : User
     lateinit var fragmentTransaction: FragmentTransaction
 
@@ -82,8 +83,9 @@ class Profile(mcontext: Context) : Fragment() {
                             val phoneNumber = ds.child("phoneNumber").getValue(String::class.java)
                             val address = ds.child("address").getValue(String::class.java)
                             val email = ds.child("email").getValue(String::class.java)
+                            type = ds.child("type").getValue(String::class.java)!!
 
-                            createUser(name!!,lastname!!,phoneNumber!!,address!!,email!!)
+                            createUser(name!!,lastname!!,phoneNumber!!,address!!,email!!,type)
 
                             progressDialog.progresDismis()
                         }
@@ -92,13 +94,14 @@ class Profile(mcontext: Context) : Fragment() {
         }
     }
 
-    private fun createUser(name: String,lastname:String,phone: String,address: String, email: String){
+    private fun createUser(name: String,lastname:String,phone: String,address: String, email: String,type : String){
         loggedUser = User(
             name,
             lastname,
             phone,
             address,
-            email
+            email,
+            type
         )
 
         fillFields()
@@ -149,7 +152,8 @@ class Profile(mcontext: Context) : Fragment() {
                 binding.user?.lastname?.value.toString(),
                 binding.user?.phoneNumber?.value.toString(),
                 binding.user?.address?.value.toString(),
-                binding.user?.email?.value.toString()
+                binding.user?.email?.value.toString(),
+                type
             )
             updateUserInDatabase()
             saveInPreferenceManager(binding.user?.name?.value.toString(),binding.user?.lastname?.value.toString(),

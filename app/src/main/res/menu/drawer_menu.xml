@@ -3,16 +3,19 @@
     <item
         android:title ="@string/userAccount">
         <menu>
-
             <item
                 android:id="@+id/reportFailure"
-                android:title="@string/reportfailure" />
+                android:title="@string/reportfailure"
+                android:icon="@drawable/report"/>
             <item
                 android:id="@+id/myReportFailure"
-                android:title="@string/myreportfailure" />
+                android:title="@string/myreportfailure"
+                android:icon="@drawable/files"
+                />
             <item
                 android:id="@+id/financial"
-                android:title="@string/financial" />
+                android:title="@string/financial"
+                android:icon="@drawable/financial"/>
             <item
                 android:id="@+id/adminSetNotification"
                 android:title="@string/adminSetNotification"
@@ -23,7 +26,8 @@
                 android:visible="false"/>
             <item
                 android:id="@+id/logOut"
-                android:title="@string/logout" />
+                android:title="@string/logout"
+                android:icon="@drawable/logout"/>
 
         </menu>
     </item>
@@ -31,20 +35,25 @@
         <menu>
             <item
                 android:id="@+id/aboutUs"
-                android:title="@string/aboutus" />
+                android:title="@string/aboutus"
+                android:icon="@drawable/info"/>
             <item
                 android:id="@+id/notification"
-                android:title="@string/Notifications" />
+                android:title="@string/Notifications"
+                android:icon="@drawable/notification"/>
 
             <item
                 android:id="@+id/buildings"
-                android:title="@string/buildings" />
+                android:title="@string/buildings"
+                android:icon="@drawable/building"/>
             <item
                 android:id="@+id/importantInfo"
-                android:title="@string/importantinfo" />
+                android:title="@string/importantinfo"
+                android:icon="@drawable/info"/>
             <item
                 android:id="@+id/contact"
-                android:title="@string/contact" />
+                android:title="@string/contact"
+                android:icon="@drawable/contact"/>
         </menu>
     </item>
 

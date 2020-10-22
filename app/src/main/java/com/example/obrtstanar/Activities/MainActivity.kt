@@ -3,6 +3,7 @@ package com.example.obrtstanar.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.obrtstanar.Klase.PreferenceManager
 import com.example.obrtstanar.R
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     }
     fun checkIsUserLogged(){
         val preferenceManager = PreferenceManager()
-        if(preferenceManager.GetLoginStatus() == "true"){
+        Log.w("ASD", preferenceManager.getLoginStatus()!!)
+        if(preferenceManager.getLoginStatus() == "true"){
             startNewActivity(MainMenu::class.java)
         }
         else{

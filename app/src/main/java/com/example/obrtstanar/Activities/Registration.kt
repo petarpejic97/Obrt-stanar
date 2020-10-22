@@ -5,10 +5,8 @@ package com.example.obrtstanar.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -16,6 +14,7 @@ import com.example.obrtstanar.Klase.Controllers.AlertController
 import com.example.obrtstanar.Klase.Controllers.PasswordController
 import com.example.obrtstanar.Klase.ProgressDialog
 import com.example.obrtstanar.Klase.FirebaseClass.User
+import com.example.obrtstanar.Klase.ObrtStanar
 import com.example.obrtstanar.R
 import com.example.obrtstanar.RegistrationViewModel
 import com.example.obrtstanar.databinding.ActivityRegistrationBinding
@@ -27,11 +26,12 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_registration.*
 
 
-class Registration : AppCompatActivity() {
+class Registration : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var viewModel : RegistrationViewModel
     private lateinit var binding : ActivityRegistrationBinding
 
     lateinit var progress : ProgressDialog
+    lateinit var spinnerUserType : Spinner
 
     private var alertController : AlertController = AlertController()
 
@@ -40,6 +40,9 @@ class Registration : AppCompatActivity() {
     var passequality : Boolean = true;
 
     private lateinit var auth: FirebaseAuth
+
+    private var usertype :String = "Stanar"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -53,7 +56,10 @@ class Registration : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+
         binding = DataBindingUtil.setContentView(this,R.layout.activity_registration)
+
+        spinnerUserType = binding.root.findViewById(R.id.userTypeSpinner)
 
         viewModel = ViewModelProviders.of(this).get(RegistrationViewModel::class.java)
 
@@ -61,6 +67,12 @@ class Registration : AppCompatActivity() {
     }
 
     private fun setUpUI(){
+        spinnerUserType.onItemSelectedListener = this
+        ArrayAdapter.createFromResource(ObrtStanar.ApplicationContext, R.array.user_type, android.R.layout.simple_spinner_item).also {
+                adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerUserType.adapter = adapter
+        }
+
         binding.apply {
             registration = viewModel
             binding.registration?.name?.value = viewModel.name.value
@@ -156,7 +168,7 @@ class Registration : AppCompatActivity() {
 
                 } else {
                     progress.progresDismis()
-                    Toast.makeText(baseContext, "Authentication failed.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "Registracija nije uspjela.",Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -166,12 +178,24 @@ class Registration : AppCompatActivity() {
             binding.registration?.lastname?.value!!,
             binding.registration?.phoneNumber?.value!!,
             binding.registration?.address?.value!!,
-            binding.registration?.email?.value!!
+            binding.registration?.email?.value!!,
+            usertype
         )
 
         val database = FirebaseDatabase.getInstance()
         val key = database.getReference("users").push().key
         val myRef = key?.let { database.getReference().child("users").child(it).setValue(user) }
 
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        val spinner = parent as Spinner
+        if (spinner.id == R.id.userTypeSpinner) {
+            usertype = parent.getItemAtPosition(position).toString()
+        }
     }
 }

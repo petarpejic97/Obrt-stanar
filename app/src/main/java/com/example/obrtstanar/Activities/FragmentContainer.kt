@@ -187,6 +187,6 @@ class FragmentContainer : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     private fun setPreferences(){
         preferenceManager.saveLoggedEmail("Niste prijavljeni.")
-        preferenceManager.setLoginStatus("false")
+        preferenceManager.saveLoginStatus("false")
     }
 }

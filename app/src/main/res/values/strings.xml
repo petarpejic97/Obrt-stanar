@@ -21,6 +21,11 @@
     <string name="phoneNumber">Unesite broj mobitela/ telefona</string>
     <string name="regaddress">Unesite adresu i grad stanovanja</string>
     <string name="doregistration">Registriraj se</string>
+    <string name="youare">Vi ste: </string>
+    <string-array name="user_type">
+        <item>Stanar</item>
+        <item>Nadstojnik</item>
+    </string-array>
 
     <!--    glavni izbornik-->
     <string name="mainmenu">Izbornik</string>
@@ -57,8 +62,8 @@
     <!--    kontakt -->
     <string name="obrtstanarvlasnik">Obrt za idržavanje i upravljanje zgradama Stanar vl. Ivana Popović</string>
     <string name="radnovrijeme">Radno vrijeme: 8:00 – 16:00</string>
-    <string name="telmob">Telefon/Mobitel: 091 / 544 02 65  ;  099 / 23 99 777</string>
-    <string name="emailaddress">Email: obrt.stanar@gmail.com</string>
+    <string name="telmob">Mobitel: 091 / 544 02 65  ;  099 / 23 99 777</string>
+    <string name="sendemail">Pošaljite nam e-mail</string>
     <string name="address">Adresa: Hrvatskih kraljeva 28, VINKOVCI</string>
 
     <!--    zgrade pod upravom -->
@@ -82,17 +87,17 @@
     <string name="loadPicture">Učitajte sliku</string>
     <string name="submitFailure">Podnesi prijavu</string>
     <string name="turnOnUserSetting">Koristi korisnikove informacije</string>
+    <string name="isfinished">Je li kvar \npopravljen ?</string>
     <string-array name="failure_array">
         <item>Hitno</item>
         <item>Kroz par dana</item>
         <item>Nije hitno</item>
     </string-array>
     <string-array name="typeoffalilure_array">
-        <item>Mehanički kvar</item>
-        <item>Električni kvar</item>
-        <item>Kvar s grijanjem</item>
-        <item>Vodoinstalaterski kvar</item>
-        <item>Infrastrukturni kvar</item>
+        <item>Vodovodne instalacije</item>
+        <item>Električne instalacije</item>
+        <item>Oštećenja na zgradi</item>
+        <item>Ostali kvarovi</item>
     </string-array>
     <string-array name="adminState">
         <item>Kvar poslan. Nadstojnik nije vidio.</item>
@@ -115,4 +120,9 @@
     <string name="tvimportant5">• Instagram i facebook</string>
     <string name="tvimportant6">• Pričuvu je dužan plaćati vlasnik po Zakonu o vlasništvu i drugim stvarnim pravima ako se nije ugovorom reguliralo sa najmoprimcem</string>
     <string name="tvimportant7">• Neplaćanje pričuve rezultirat će opomenom te ukoliko se opomena zanemari slijedi ovrha sa troškovima odvjetnika i javnog bilježnika</string>
+
+    <!-- Pišalji email -->
+    <string name="emailtitle">Pošalji email</string>
+    <string name="edTitleemail">Unesite naslov poruke</string>
+    <string name="edBody">Unesite tekst poruke</string>
 </resources>

@@ -23,6 +23,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class SeeAllFailures : Fragment(){
     private lateinit var rootView : View
@@ -32,6 +34,7 @@ class SeeAllFailures : Fragment(){
     private lateinit var progressBar : ProgressBar
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var firebaseStorage: FirebaseStorage
     private var failures : MutableList<FailureWithId> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +97,16 @@ class SeeAllFailures : Fragment(){
 
                             }
 
+                            override fun deleteImage(uri: String,id : String) {
+                                Log.w("AAA","ovdje urem")
+                                removeDataFromDatabase(id)
+                                if(uri != ""){
+                                    removeImageFromStorage(uri)
+                                }
+
+                                failureAdapter.refreshData()
+                            }
+
                         }
                         failureAdapter = FailureAdapter(failures,failureListener)
 
@@ -124,4 +137,18 @@ class SeeAllFailures : Fragment(){
         val databaseReference = database.getReference()
         databaseReference.child("failures").child(id).child("repairState").setValue(state)
     }
+    private fun removeDataFromDatabase(id: String){
+        Log.w("AAA",id)
+        val database = FirebaseDatabase.getInstance()
+        val databaseReference = database.reference
+        databaseReference.child("failures").child(id).removeValue()
+    }
+    private fun removeImageFromStorage(uri: String){
+        firebaseStorage = FirebaseStorage.getInstance()
+        val imageRef = firebaseStorage.getReferenceFromUrl(uri)
+        imageRef.delete().addOnSuccessListener {
+            Toast.makeText(activity,"Obrisano",Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="email"
+            type="com.example.obrtstanar.SendEmailViewModel">
+        </variable>
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activities.ShowPicture"
+        android:padding="10dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/backw"
+            android:outlineAmbientShadowColor="#FFFFFF"
+            />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/emailtitle"
+            android:fontFamily="casual"
+            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/edSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="@string/edTitleemail"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:layout_below="@id/tvTitle"
+            android:text="@={email.subject}"
+            />
+        <EditText
+            android:id="@+id/edBody"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="@string/edBody"
+            android:layout_marginBottom="10dp"
+            android:gravity="start"
+            android:padding="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:layout_below="@id/edSubject"
+            android:layout_above="@id/btnSendEmail"
+            android:text="@={email.body}"
+            />
+
+        <Button
+            android:id="@+id/btnSendEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:background="#FFFFFF"
+            android:text="@string/emailtitle"
+            />
+
+    </RelativeLayout>
+</layout>

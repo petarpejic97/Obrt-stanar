@@ -27,6 +27,8 @@
             android:textSize="16sp"
             android:gravity="center_vertical"
             android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="@string/obrtstanarvlasnik"/>
 
         <TextView
@@ -36,25 +38,35 @@
             android:textSize="16sp"
             android:gravity="center"
             android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="@string/radnovrijeme"/>
 
-        <TextView
-            android:id="@+id/tvTelMob"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/telmob" />
+            android:id="@+id/rlContact"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tvTelMob"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:textSize="16sp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_centerVertical="true"
+                android:text="@string/telmob"/>
 
-        <TextView
-            android:id="@+id/tvEmailLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/emailaddress" />
+            <ImageView
+                android:id="@+id/imgCall"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@id/tvTelMob"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/call"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tvAddress"
@@ -63,7 +75,19 @@
             android:layout_weight="1"
             android:textSize="16sp"
             android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="@string/address"/>
+
+        <Button
+            android:id="@+id/btnSendEmail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:text="@string/sendemail"
+            />
 
         <fragment
             android:layout_width="match_parent"

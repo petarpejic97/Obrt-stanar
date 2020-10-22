@@ -49,6 +49,7 @@ class FailureAdapter(failures : MutableList<FailureWithId>, failureListener : Fa
 class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnItemSelectedListener {
 
     var imgTypeOfFailure : ImageView
+    var imgRemove : ImageView
     var tvName : TextView
     var tvLastname : TextView
     var tvAddress : TextView
@@ -61,10 +62,12 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnI
     var spinnerFailureState : Spinner
     lateinit var failureListener : FailureListener
     private var preferenceManager: PreferenceManager = PreferenceManager()
+
     var check = 0
 
     init {
         imgTypeOfFailure = itemView.findViewById(R.id.imgTypeOfFailure)
+        imgRemove = itemView.findViewById(R.id.imgRemove)
         tvFailureId = itemView.findViewById(R.id.failureId)
         tvName = itemView.findViewById(R.id.tvName)
         tvLastname = itemView.findViewById(R.id.tvLastname)
@@ -85,6 +88,7 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnI
 
         if (preferenceManager.getLoggedEmail() == "petar.pejic@outlook.com"){
             spinnerFailureState.visibility=View.VISIBLE
+            imgRemove.visibility = View.VISIBLE
             tvRepairState.visibility = View.INVISIBLE
         }
     }
@@ -104,23 +108,22 @@ class FailureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnI
         itemView.tvFailureDescription.text = failure.failureDescription
         itemView.tvTypeOfFailure.text = failure.typeOfFailure
 
+        imgRemove.setOnClickListener { failureListener.deleteImage(failure.failureImageUri,failure.id) }
+
         itemView.setOnLongClickListener { failureListener.onShowDetails(failure.typeOfFailure,failure.failureImageUri) ; true; }
     }
     private fun setFailureIcon(failure : FailureWithId) : Int{
         when(failure.typeOfFailure){
-            "Mehanički kvar"->{
+            "Ostali kvarovi"->{
                 return R.drawable.mehanicalfailure
             }
-            "Električni kvar"->{
+            "Električne instalacije"->{
                 return R.drawable.electricfailure
             }
-            "Kvar s grijanjem"->{
-                return R.drawable.heatinfailure
-            }
-            "Vodoinstalaterski kvar" ->{
+            "Vodovodne instalacije" ->{
                 return R.drawable.plumbingfailure
             }
-            "Infrastrukturni kvar"->{
+            "Oštećenja na zgradi"->{
                 return R.drawable.infrastructurefailure
             }
             else -> {

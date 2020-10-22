@@ -27,11 +27,14 @@ class PreferenceManager {
     fun saveAddress(address: String) {
         saveVariable("address", address)
     }
-    fun setLoginStatus(status: String) {
+    fun saveLoginStatus(status: String) {
         saveVariable("loginStatus", status)
     }
-    fun getLoggedKey(): String? {
-        return sharedPreferences.getString("primaryKey", "none")
+    fun saveUserType(type: String) {
+        saveVariable("userType", type)
+    }
+    fun getUserType(): String? {
+        return sharedPreferences.getString("userType", "none")
     }
     fun getLoggedEmail(): String? {
         return sharedPreferences.getString("loggedEmail", "none")
@@ -48,9 +51,10 @@ class PreferenceManager {
     fun getLoggedAddress(): String? {
         return sharedPreferences.getString("address", "none")
     }
-    fun GetLoginStatus(): String? {
+    fun getLoginStatus(): String? {
         return sharedPreferences.getString("loginStatus", "none")
     }
+
     fun saveVariable(varName : String, varValue : String){
         val editor = sharedPreferences.edit()
         editor.putString(varName, varValue)
