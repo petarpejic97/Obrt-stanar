@@ -7,7 +7,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="email"
-            type="com.example.obrtstanar.SendEmailViewModel">
+            type="com.stanar.obrtstanar.SendEmailViewModel">
         </variable>
     </data>
     <RelativeLayout

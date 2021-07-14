@@ -7,7 +7,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="user"
-            type="com.example.obrtstanar.UserViewModel">
+            type="com.stanar.obrtstanar.UserViewModel">
         </variable>
     </data>
     <ScrollView

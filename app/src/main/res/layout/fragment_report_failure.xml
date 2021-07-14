@@ -7,7 +7,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="reportFailure"
-            type="com.example.obrtstanar.ReportFailureViewModel">
+            type="com.stanar.obrtstanar.ReportFailureViewModel">
         </variable>
     </data>
     <ScrollView

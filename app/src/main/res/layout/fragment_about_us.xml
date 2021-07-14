@@ -17,7 +17,7 @@
                 android:id="@+id/imgStanar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/stanar"
+                android:src="@drawable/zgrada"
                 android:layout_below="@+id/tvTitle"
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
@@ -29,6 +29,7 @@
                 android:text="@string/textAboutUs"
                 android:padding="10dp"
                 android:textSize="15sp"
+                android:fontFamily="sans-serif-medium"
                 android:layout_below="@id/imgStanar"
                 />
         </RelativeLayout>

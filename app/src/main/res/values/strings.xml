@@ -30,7 +30,7 @@
     <!--    glavni izbornik-->
     <string name="mainmenu">Izbornik</string>
     <string name="aboutus">O nama</string>
-    <string name="Notifications">Obavjesti</string>
+    <string name="Notifications">Obavijesti</string>
     <string name="reportfailure">Prijava kvara</string>
     <string name="myreportfailures">Prijavljeni kvarovi</string>
     <string name="financial">Financijsko stanje</string>
@@ -60,9 +60,9 @@
     <string name="editprofile">Pogledaj profil</string>
 
     <!--    kontakt -->
-    <string name="obrtstanarvlasnik">Obrt za idržavanje i upravljanje zgradama Stanar vl. Ivana Popović</string>
+    <string name="obrtstanarvlasnik">Obrt za održavanje i upravljanje zgradama Stanar vl. Ivana Popović</string>
     <string name="radnovrijeme">Radno vrijeme: 8:00 – 16:00</string>
-    <string name="telmob">Mobitel: 091 / 544 02 65  ;  099 / 23 99 777</string>
+    <string name="telmob">Mobitel: 099 / 23 99 777</string>
     <string name="sendemail">Pošaljite nam e-mail</string>
     <string name="address">Adresa: Hrvatskih kraljeva 28, VINKOVCI</string>
 
@@ -76,6 +76,135 @@
         <item>Okučani</item>
         <item>Zaton</item>
     </string-array>
+    <string-array name="zgrade_vinkovci">
+        <item>Sve zgrade</item>
+        <item>Trg dr. Franje Tuđmana 3A</item>
+        <item>Ulica Stjepana Radića 35A</item>
+        <item>Lapovačka ulica 32</item>
+        <item>Ulica Alojzija Stepinca 80</item>
+        <item>Ulica Josipa Jurja Strossmayera 9</item>
+        <item>Ulica Kneza Mislava 26</item>
+        <item>Ulica Kneza Mislava 7</item>
+        <item>Lapovačka ulica 34</item>
+        <item>Lapovačka ulica 14</item>
+        <item>Lapovačka ulica 16</item>
+        <item>Lapovačka ulica 18</item>
+        <item>Lapovačka ulica 20</item>
+        <item>Lapovačka ulica 22</item>
+        <item>Lapovačka ulica 36</item>
+        <item>Ulica Hrvatskih Kraljeva 28</item>
+        <item>Ulica Vladimira Nazora 22</item>
+        <item>Ulica Vladimira Nazora 24</item>
+        <item>Ohridska ulica 4</item>
+        <item>Ohridska ulica 5</item>
+        <item>Ohridska ulica 6</item>
+        <item>Ohridska ulica 7</item>
+        <item>Ohridska ulica 8</item>
+        <item>Ohridska ulica 10</item>
+        <item>Ohridska ulica 14</item>
+        <item>Ulica Ante Starčevića 7</item>
+        <item>Ulica Ante Starčevića 9</item>
+        <item>Ulica Ante Starčevića 15</item>
+        <item>Ulica Ante Starčevića 17</item>
+        <item>Ulica Ante Starčevića 19</item>
+        <item>Ulica Ante Starčevića 62</item>
+        <item>Ulica Ante Starčevića 64</item>
+        <item>Ulica Ante Starčevića 70</item>
+        <item>Ulica Ante Starčevića 72</item>
+        <item>Ulica Josipa Jurja Strossmayera 1</item>
+        <item>Ulica Josipa Jurja Strossmayera 3</item>
+        <item>Ulica Josipa Jurja Strossmayera 5</item>
+        <item>Ulica Josipa Jurja Strossmayera 8</item>
+        <item>Ulica Josipa Jurja Strossmayera 10</item>
+        <item>Ulica Josipa Jurja Strossmayera 11</item>
+        <item>Ulica Josipa Jurja Strossmayera 14</item>
+        <item>Ulica Antuna Zrinšeka 15</item>
+        <item>Ulica Ivana Mažuranića 10</item>
+        <item>Ulica Ivana Mažuranića 12</item>
+        <item>Tenina 3</item>
+        <item>Ulica Matice hrvatske 6</item>
+        <item>A. B. Šimića 13</item>
+        <item>A. B. Šimića 15</item>
+        <item>A. B. Šimića 21</item>
+        <item>Trg Josipa Runjanina 14</item>
+        <item>Trg Josipa Runjanina 15</item>
+        <item>Ulica Josipa Lovretića 2</item>
+        <item>Ulica Josipa Lovretića 46</item>
+        <item>Ulica Petra Zrinskog 12</item>
+        <item>Ulica Andrije Hebranga 2A</item>
+        <item>Ulica Andrije Hebranga 2B</item>
+        <item>Vatrogasna ulica 12</item>
+        <item>Vatrogasna ulica 16</item>
+        <item>Duga ulica 1</item>
+        <item>Duga ulica 51</item>
+        <item>Ulica Jurja Dalmatinca 17</item>
+        <item>Ulica Jurja Dalmatinca 19</item>
+        <item>Ulica kralja Zvonimira 4</item>
+        <item>Ulica Slavka Jankovića 7</item>
+        <item>Ulica Nikole teske 39B</item>
+        <item>Šetalište Dionizija Švagelja 5</item>
+    </string-array>
+    <string-array name="zgrade_gradiska">
+        <item>Sve zgrade</item>
+        <item>Cvijetni trg 5</item>
+        <item>Cvijetni trg 6</item>
+        <item>Cvijetni trg 7</item>
+        <item>Cvijetni trg 8</item>
+        <item>Cvijetni trg 9</item>
+        <item>Cvijetni trg 13</item>
+        <item>Ulica kralja Petra Svačića 1</item>
+        <item>Ulica kralja Petra Svačića 3</item>
+        <item>Ulica kralja Petra Svačića 4</item>
+        <item>Ulica kralja Petra Svačića 5</item>
+        <item>Ulica kralja Petra Svačića 6</item>
+        <item>Ulica kralja Petra Svačića 7</item>
+        <item>Ulica kralja Petra Svačića 8</item>
+        <item>Ulica kralja Petra Svačića 9</item>
+        <item>Ulica kralja Petra Svačića 11</item>
+        <item>Ulica kralja Petra Svačića 13</item>
+        <item>Ulica kralja Petra Svačića 15</item>
+        <item>Ulica kralja Tomislava 1</item>
+        <item>Ulica kralja Tomislava 2</item>
+        <item>Ulica kralja Tomislava 3</item>
+        <item>Ulica kralja Tomislava 4</item>
+        <item>Ulica kralja Tomislava 5</item>
+        <item>Ulica kralja Tomislava 6</item>
+        <item>Ulica kralja Tomislava 7</item>
+        <item>Ulica kralja Tomislava 9</item>
+    </string-array>
+    <string-array name="zgrade_ilok">
+        <item>Sve zgrade</item>
+        <item>Ulica Vlatka Kraljevića 1</item>
+        <item>Ulica Vlatka kraljevića 2</item>
+        <item>Ulica Vlatka Kraljevića 1A</item>
+        <item>Ulica Vlatka Kraljevića 4</item>
+        <item>Ulica Vlatka Kraljevića 14</item>
+        <item>Ulica Vlatka Kraljevića 16</item>
+        <item>Ulica dr. Franje Tuđmana 60</item>
+        <item>Ulica dr. Franje Tuđmana 62</item>
+        <item>Trg žrtava Domovinskog rata 13</item>
+    </string-array>
+    <string-array name="zgrade_brod">
+        <item>Sve zgrade</item>
+        <item>Ulica Nikole Zrinskog 65</item>
+        <item>Ulica Matije Gubca 32</item>
+    </string-array>
+    <string-array name="zgrade_vukovar">
+        <item>Sve zgrade</item>
+        <item>Dunavska ulica 7</item>
+        <item>Kardinala Alojzija Stepinca 9</item>
+        <item>Trg Republike Hrvatske 2</item>
+    </string-array>
+    <string-array name="zgrade_okučani">
+        <item>Sve zgrade</item>
+        <item>Ulica Ante Starčevića 3</item>
+        <item>Ulica Ante Starčevića 80</item>
+        <item>Ulica 121. Brigade HV11</item>
+    </string-array>
+    <string-array name="zgrade_zaton">
+        <item>Sve zgrade</item>
+        <item>Dražnikova ulica 64A</item>
+    </string-array>
 
     <!-- Profil -->
     <string name="btnResetPassword">Ponovno postavi zaporku</string>
@@ -88,6 +217,7 @@
     <string name="submitFailure">Podnesi prijavu</string>
     <string name="turnOnUserSetting">Koristi korisnikove informacije</string>
     <string name="isfinished">Je li kvar \npopravljen ?</string>
+    <string name="notfinished">Kvar nije \npopravljen ?\nPritisnite ovdje</string>
     <string-array name="failure_array">
         <item>Hitno</item>
         <item>Kroz par dana</item>
@@ -104,7 +234,19 @@
         <item>Viđeno. Tražim majstora.</item>
         <item>Majstor pozvan</item>
     </string-array>
-
+    <string-array name="repairerState">
+        <item>Kvar poslan. Nadstojnik nije vidio.</item>
+        <item>Viđeno. Tražim majstora.</item>
+        <item>Majstor pozvan</item>
+        <item>Viđeno. Nemam definirano vrijeme.</item>
+        <item>Viđeno. Dolazim u ponedjeljak.</item>
+        <item>Viđeno. Dolazim u utorak.</item>
+        <item>Viđeno. Dolazim u srijedu.</item>
+        <item>Viđeno. Dolazim u četvrtak.</item>
+        <item>Viđeno. Dolazim u petak.</item>
+        <item>Viđeno. Dolazim u subotu.</item>
+        <item>Viđeno. Dolazim u nedjelju.</item>
+    </string-array>
     <!-- Postavlaknje obavjesti -->
     <string name="edNotificationHint">Unesite naslov obavjesti</string>
     <string name="edEnterNotification">Unesite obavjest</string>

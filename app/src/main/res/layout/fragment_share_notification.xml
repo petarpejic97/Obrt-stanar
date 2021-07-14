@@ -6,7 +6,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="notification"
-            type="com.example.obrtstanar.NotificationViewModel">
+            type="com.stanar.obrtstanar.NotificationViewModel">
         </variable>
     </data>
     <RelativeLayout

@@ -7,7 +7,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="registration"
-            type="com.example.obrtstanar.RegistrationViewModel">
+            type="com.stanar.obrtstanar.RegistrationViewModel">
         </variable>
     </data>
     <ScrollView
